@@ -4,14 +4,17 @@
   "private": true,
   "dependencies": {
     "bcrypt": "^3.0.4",
+    "bootstrap": "^4.3.1",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "font-awesome": "^4.7.0",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.4.19",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-router-dom": "^4.4.0",
     "react-scripts": "2.1.8"
   },
   "scripts": {

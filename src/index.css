@@ -12,3 +12,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.fa-shopping-cart {
+  font-size: 22px;
+  position: relative;
+}
+
+.counter {
+  position: absolute;
+  top: -6px;
+  left: 16px;
+  font-size: 11px;
+  border-radius: 10px;
+}
