@@ -1,17 +1,24 @@
 import mongoose from "mongoose";
+import Joi from "joi";
 
 const productSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
+    required: true,
+    minlength: 5,
+    maxlength: 25
   },
   short: {
     type: String,
-    required: true
+    required: true,
+    minlength: 10,
+    maxlength: 30
   },
   long: {
     type: String,
-    required: true
+    required: true,
+    minlength: 15,
+    maxlength: 500
   },
   image: {
     type: String
@@ -24,4 +31,25 @@ const productSchema = new mongoose.Schema({
 
 const Product = mongoose.model("Product", productSchema);
 
-export { Product };
+function validateProduct(product) {
+  const schema = {
+    title: Joi.string()
+      .min(5)
+      .max(25)
+      .required(),
+    short: Joi.string()
+      .min(10)
+      .max(30)
+      .required(),
+    long: Joi.string()
+      .min(15)
+      .max(500)
+      .required(),
+    image: Joi.string(),
+    price: Joi.number().required()
+  };
+
+  return Joi.validate(product, schema);
+}
+
+export { Product, validateProduct as validate };
