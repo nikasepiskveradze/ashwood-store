@@ -86,3 +86,25 @@ code {
 .card button:hover {
   opacity: 0.7;
 }
+
+#footer-section {
+  background: #3a3e64;
+}
+#footer-section h6 {
+  color: #fff;
+  font-weight: bold;
+}
+#footer-section .upper-footer {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+#footer-section .fa {
+  font-size: 25px;
+  border: 1px solid #fff;
+  padding: 10px 15px;
+  color: #fff;
+}
+
+.below-footer {
+  background: #313454;
+}
