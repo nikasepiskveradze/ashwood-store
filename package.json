@@ -13,6 +13,7 @@
     "joi-browser": "^13.4.0",
     "jquery": "^3.3.1",
     "jsonwebtoken": "^8.5.0",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.4.19",
     "popper.js": "^1.14.7",

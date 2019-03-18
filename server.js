@@ -4,6 +4,7 @@ import cors from "cors";
 
 import users from "./server/routes/users";
 import products from "./server/routes/products";
+import login from "./server/routes/login";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/users", users);
+app.use("/api/login", login);
 app.use("/api/products", products);
 
 const port = process.env.PORT || 5000;

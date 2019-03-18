@@ -8,20 +8,29 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Logout from "./components/Logout";
+import * as loginService from "./services/loginService";
 
 class App extends Component {
   state = {};
 
+  componentDidMount() {
+    const user = loginService.getCurrentUser();
+    this.setState({ user });
+  }
+
   render() {
+    const { user } = this.state;
     return (
       <React.Fragment>
-        <NavBar />
+        <NavBar user={user} />
 
         <Switch>
           <Route path="/products" component={Products} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
           <Route path="/register" component={Register} />
           <Route path="/" component={Home} />
         </Switch>

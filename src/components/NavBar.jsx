@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 class NavBar extends Component {
   state = {};
   render() {
+    const { user } = this.props;
     return (
       <nav className="navbar navbar-expand-md bg-dark navbar-dark py-3">
         <div className="container">
@@ -47,13 +48,29 @@ class NavBar extends Component {
                 </i>
               </NavLink>
 
-              <NavLink to="/login" className="nav-item nav-link">
-                Login
-              </NavLink>
+              {!user && (
+                <React.Fragment>
+                  <NavLink to="/login" className="nav-item nav-link">
+                    Login
+                  </NavLink>
 
-              <NavLink to="/register" className="nav-item nav-link">
-                Register
-              </NavLink>
+                  <NavLink to="/register" className="nav-item nav-link">
+                    Register
+                  </NavLink>
+                </React.Fragment>
+              )}
+
+              {user && (
+                <React.Fragment>
+                  <NavLink to="/profile" className="nav-item nav-link">
+                    Profile
+                  </NavLink>
+
+                  <NavLink to="/logout" className="nav-item nav-link">
+                    Log Out
+                  </NavLink>
+                </React.Fragment>
+              )}
             </ul>
           </div>
         </div>
