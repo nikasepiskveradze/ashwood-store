@@ -1,9 +1,20 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/Form";
+import * as userService from "../services/userService";
 
 class Register extends Form {
-  state = { data: { name: "", email: "", password: "" }, errors: {} };
+  state = {
+    data: {
+      name: "",
+      email: "",
+      password: "",
+      age: "",
+      birthday: "",
+      balance: ""
+    },
+    errors: {}
+  };
 
   schema = {
     name: Joi.string()
@@ -16,15 +27,25 @@ class Register extends Form {
     password: Joi.string()
       .required()
       .min(5)
-      .label("Password")
+      .label("Password"),
+    age: Joi.number()
+      .required()
+      .label("Age"),
+    birthday: Joi.string()
+      .required()
+      .label("Birthday"),
+    balance: Joi.number()
+      .required()
+      .label("Balance")
   };
 
   doSubmit = async () => {
     try {
-      // const respone = await userService.register(this.state.data);
+      const respone = await userService.register(this.state.data);
+      console.log(respone);
       // loginService.loginWithJwt(respone.headers["x-auth-token"]);
 
-      window.location = "/";
+      // window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -45,6 +66,9 @@ class Register extends Form {
                 {this.renderInput("name", "Name")}
                 {this.renderInput("email", "Email")}
                 {this.renderInput("password", "Passwowrd", "password")}
+                {this.renderInput("age", "Age", "number")}
+                {this.renderInput("birthday", "Birth", "date")}
+                {this.renderInput("balance", "Balance", "number")}
                 {this.renderButton("Register")}
               </form>
             </div>
