@@ -32,7 +32,7 @@ class Login extends Form {
 
   render() {
     return (
-      <div className="login-form py-5 bg-light">
+      <div className="login-form py-4 bg-light">
         <div className="container">
           <div className="row">
             <div className="col-7 m-auto">

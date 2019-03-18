@@ -57,7 +57,7 @@ class Register extends Form {
 
   render() {
     return (
-      <div className="register-form py-5 bg-light">
+      <div className="register-form py-4 bg-light">
         <div className="container">
           <div className="row">
             <div className="col-7 m-auto">

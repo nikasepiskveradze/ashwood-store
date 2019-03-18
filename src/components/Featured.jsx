@@ -13,7 +13,7 @@ const Featured = () => {
 
               <div className="card-body text-center">
                 <h5 className="card-title">
-                  <a href="#">Tank Top</a>
+                  <a href="/">Tank Top</a>
                 </h5>
                 <p className="card-text">Finding perfect t-shirt</p>
                 <p className="card-text">50$</p>
@@ -27,7 +27,7 @@ const Featured = () => {
 
               <div className="card-body text-center">
                 <h5 className="card-title">
-                  <a href="#">Tank Top</a>
+                  <a href="/">Tank Top</a>
                 </h5>
                 <p className="card-text">Finding perfect t-shirt</p>
                 <p className="card-text">50$</p>
@@ -41,7 +41,7 @@ const Featured = () => {
 
               <div className="card-body text-center">
                 <h5 className="card-title">
-                  <a href="#">Tank Top</a>
+                  <a href="/">Tank Top</a>
                 </h5>
                 <p className="card-text">Finding perfect t-shirt</p>
                 <p className="card-text">50$</p>
