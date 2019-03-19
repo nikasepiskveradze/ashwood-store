@@ -18,6 +18,10 @@ export function logout() {
   localStorage.removeItem(tokenKey);
 }
 
+export function getJwt() {
+  return localStorage.getItem(tokenKey);
+}
+
 export function getCurrentUser() {
   try {
     const jwt = localStorage.getItem(tokenKey);

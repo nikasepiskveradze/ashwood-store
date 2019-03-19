@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Logout from "./components/Logout";
 import ProductDetails from "./components/ProductDeatils";
+import Profile from "./components/Profile";
 import * as loginService from "./services/loginService";
 
 class App extends Component {
@@ -34,6 +35,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
           <Route path="/register" component={Register} />
+          <Route path="/profile" component={Profile} />
           <Route path="/" component={Home} />
         </Switch>
 
