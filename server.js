@@ -1,5 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
+import Joi from "joi";
+Joi.objectId = require("joi-objectid")(Joi);
 import cors from "cors";
 
 import users from "./server/routes/users";

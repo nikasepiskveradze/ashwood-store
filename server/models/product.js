@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Joi from "joi";
+import { categorySchema } from "./category";
 
 const productSchema = new mongoose.Schema({
   title: {
@@ -22,6 +23,10 @@ const productSchema = new mongoose.Schema({
   },
   image: {
     type: String
+  },
+  category: {
+    type: categorySchema,
+    required: true
   },
   price: {
     type: Number,
@@ -46,6 +51,7 @@ function validateProduct(product) {
       .max(500)
       .required(),
     image: Joi.string(),
+    category: Joi.objectId().required(),
     price: Joi.number().required()
   };
 

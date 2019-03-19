@@ -1,6 +1,5 @@
 import React from "react";
 import _ from "lodash";
-import { Link } from "react-router-dom";
 
 const Pagination = props => {
   const { itemsCount, pageSize, currentPage, onPageChange } = props;
