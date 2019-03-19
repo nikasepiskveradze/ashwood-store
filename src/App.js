@@ -9,6 +9,7 @@ import Contact from "./components/Contact";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Logout from "./components/Logout";
+import ProductDetails from "./components/ProductDeatils";
 import * as loginService from "./services/loginService";
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
         <NavBar user={user} />
 
         <Switch>
+          <Route path="/products/:id" component={ProductDetails} />
           <Route path="/products" component={Products} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />

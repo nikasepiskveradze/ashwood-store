@@ -1,20 +1,24 @@
 import React, { Component } from "react";
-import image from "../images/shoe_1.jpg";
+import { Link } from "react-router-dom";
 
 class Card extends Component {
-  state = {};
   render() {
+    const { _id, title, short, image, price } = this.props.product;
     return (
       <div className="col-sm-6 col-lg-4 mb-3">
         <div className="card">
-          <img className="card-img-top" src={image} alt="" />
+          <img
+            className="card-img-top"
+            src={`http://localhost:5000/${image}`}
+            alt=""
+          />
 
           <div className="card-body text-center">
             <h5 className="card-title">
-              <a href="/">Show</a>
+              <Link to={`/products/${_id}`}>{title}</Link>
             </h5>
-            <p className="card-text">Finding perfect t-shirt</p>
-            <p className="card-text">50$</p>
+            <p className="card-text">{short}</p>
+            <p className="card-text">{price}$</p>
             <p>
               <button>Add To Card</button>
             </p>

@@ -1,9 +1,20 @@
 import React, { Component } from "react";
 import Card from "./Card";
+import * as productService from "../services/productSevice";
 
 class Products extends Component {
-  state = {};
+  state = {
+    products: []
+  };
+
+  async componentDidMount() {
+    const { data: products } = await productService.getAllProducts();
+    this.setState({ products });
+  }
+
   render() {
+    const { products } = this.state;
+    console.log(this.state.products);
     return (
       <div id="products" className="bg-light  py-4">
         <div className="container">
@@ -19,17 +30,9 @@ class Products extends Component {
             </div>
             <div className="col-md-9">
               <div className="row">
-                <Card />
-                <Card />
-                <Card />
-
-                <Card />
-                <Card />
-                <Card />
-
-                <Card />
-                <Card />
-                <Card />
+                {products.map(product => (
+                  <Card key={product._id} product={product} />
+                ))}
               </div>
             </div>
           </div>
