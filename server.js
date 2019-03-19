@@ -17,7 +17,9 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch(() => console.log("Failed to Connect MongoDB"));
 
+app.use("/uploads", express.static("uploads"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use("/api/users", users);

@@ -16,6 +16,7 @@
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.4.19",
+    "multer": "^1.4.1",
     "popper.js": "^1.14.7",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
