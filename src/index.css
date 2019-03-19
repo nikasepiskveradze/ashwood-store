@@ -108,3 +108,7 @@ code {
 .below-footer {
   background: #313454;
 }
+
+.list-group-item {
+  cursor: pointer;
+}
