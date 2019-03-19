@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import Card from "./Card";
+import Pagination from "./common/Pagination";
 import * as productService from "../services/productSevice";
+import { paginate } from "../utils/paginate";
 
 class Products extends Component {
   state = {
-    products: []
+    products: [],
+    pageSize: 9,
+    currentPage: 1
   };
 
   async componentDidMount() {
@@ -12,9 +16,15 @@ class Products extends Component {
     this.setState({ products });
   }
 
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  };
+
   render() {
-    const { products } = this.state;
-    console.log(this.state.products);
+    const { products: allProducts, pageSize, currentPage } = this.state;
+
+    const products = paginate(allProducts, currentPage, pageSize);
+
     return (
       <div id="products" className="bg-light  py-4">
         <div className="container">
@@ -28,12 +38,20 @@ class Products extends Component {
                 <li className="list-group-item">Stickers</li>
               </ul>
             </div>
+
             <div className="col-md-9">
               <div className="row">
                 {products.map(product => (
                   <Card key={product._id} product={product} />
                 ))}
               </div>
+
+              <Pagination
+                itemsCount={this.state.products.length}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={this.handlePageChange}
+              />
             </div>
           </div>
         </div>
