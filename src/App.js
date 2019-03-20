@@ -11,6 +11,7 @@ import Register from "./components/Register";
 import Logout from "./components/Logout";
 import ProductDetails from "./components/ProductDeatils";
 import Profile from "./components/Profile";
+import Cart from "./components/Cart";
 import * as loginService from "./services/loginService";
 
 class App extends Component {
@@ -36,6 +37,7 @@ class App extends Component {
           <Route path="/logout" component={Logout} />
           <Route path="/register" component={Register} />
           <Route path="/profile" component={Profile} />
+          <Route path="/cart" component={Cart} />
           <Route path="/" component={Home} />
         </Switch>
 
