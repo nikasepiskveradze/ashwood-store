@@ -2,37 +2,40 @@ import mongoose from "mongoose";
 import Joi from "joi";
 import { categorySchema } from "./category";
 
-const productSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-    minlength: 5,
-    maxlength: 25
+const productSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      minlength: 5,
+      maxlength: 25
+    },
+    short: {
+      type: String,
+      required: true,
+      minlength: 10,
+      maxlength: 30
+    },
+    long: {
+      type: String,
+      required: true,
+      minlength: 15,
+      maxlength: 500
+    },
+    image: {
+      type: String
+    },
+    category: {
+      type: categorySchema,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    }
   },
-  short: {
-    type: String,
-    required: true,
-    minlength: 10,
-    maxlength: 30
-  },
-  long: {
-    type: String,
-    required: true,
-    minlength: 15,
-    maxlength: 500
-  },
-  image: {
-    type: String
-  },
-  category: {
-    type: categorySchema,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  }
-});
+  { timestamps: true }
+);
 
 const Product = mongoose.model("Product", productSchema);
 
