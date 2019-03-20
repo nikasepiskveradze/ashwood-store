@@ -1,6 +1,5 @@
 import React from "react";
 import FeaturedCard from "./common/FeaturedCard";
-import Card from "./Card";
 
 const Featured = props => {
   return (

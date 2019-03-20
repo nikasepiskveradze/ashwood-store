@@ -22,6 +22,11 @@ router.get("/", async (req, res) => {
   res.status(200).send(products);
 });
 
+router.get("/:id", async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  res.status(200).send(product);
+});
+
 router.post("/", upload.single("image"), async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
