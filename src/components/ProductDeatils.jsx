@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Counter from "./common/Counter";
 import * as productService from "../services/productSevice";
 
 class ProductDetails extends Component {
@@ -35,27 +36,15 @@ class ProductDetails extends Component {
                 <strong className="text-primary h4">{price}$</strong>
               </p>
 
-              <div className="mb-5">
-                <div className="input-group mb-3" style={{ maxWidth: 120 }}>
-                  <div className="input-group-prepend">
-                    <button className="btn btn-outline-primary ">-</button>
-                  </div>
-
-                  <input
-                    type="text"
-                    className="form-control text-center"
-                    value="1"
-                    placeholder=""
-                  />
-
-                  <div class="input-group-append">
-                    <button className="btn btn-outline-primary">+</button>
-                  </div>
-                </div>
-              </div>
+              <Counter />
 
               <p>
-                <button className="add-to-card">Add To Card</button>
+                <button
+                  onClick={() => this.props.onClick(this.state.product)}
+                  className="add-to-card"
+                >
+                  Add To Card
+                </button>
               </p>
             </div>
           </div>

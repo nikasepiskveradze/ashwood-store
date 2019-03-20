@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import images from "../images/cloth_1.jpg";
+import Counter from "./common/Counter";
 
 class Cart extends Component {
   state = {};
@@ -30,24 +31,7 @@ class Cart extends Component {
               </td>
               <td>$49.00</td>
               <td>
-                <div className="mb-5">
-                  <div className="input-group mb-3" style={{ maxWidth: 120 }}>
-                    <div className="input-group-prepend">
-                      <button className="btn btn-outline-primary ">-</button>
-                    </div>
-
-                    <input
-                      type="text"
-                      className="form-control text-center"
-                      value="1"
-                      placeholder=""
-                    />
-
-                    <div class="input-group-append">
-                      <button className="btn btn-outline-primary">+</button>
-                    </div>
-                  </div>
-                </div>
+                <Counter />
               </td>
               <td>$49.00</td>
               <td>

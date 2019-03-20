@@ -15,22 +15,40 @@ import Cart from "./components/Cart";
 import * as loginService from "./services/loginService";
 
 class App extends Component {
-  state = {};
+  state = {
+    quantity: 0
+  };
 
   componentDidMount() {
     const user = loginService.getCurrentUser();
     this.setState({ user });
   }
 
+  handleAddToCard = product => {
+    const quantity = this.state.quantity + 1;
+    this.setState({ quantity });
+    console.log(product);
+  };
+
   render() {
-    const { user } = this.state;
+    const { user, quantity } = this.state;
     return (
       <React.Fragment>
-        <NavBar user={user} />
+        <NavBar user={user} quantity={quantity} />
 
         <Switch>
-          <Route path="/products/:id" component={ProductDetails} />
-          <Route path="/products" component={Products} />
+          <Route
+            path="/products/:id"
+            render={props => (
+              <ProductDetails {...props} onClick={this.handleAddToCard} />
+            )}
+          />
+          <Route
+            path="/products"
+            render={props => (
+              <Products {...props} onClick={this.handleAddToCard} />
+            )}
+          />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/login" component={Login} />

@@ -65,7 +65,11 @@ class Products extends Component {
             <div className="col-md-9">
               <div className="row">
                 {products.map(product => (
-                  <Card key={product._id} product={product} />
+                  <Card
+                    key={product._id}
+                    product={product}
+                    onClick={() => this.props.onClick(product)}
+                  />
                 ))}
               </div>
 

@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 class NavBar extends Component {
   state = {};
   render() {
-    const { user } = this.props;
+    const { user, quantity } = this.props;
     return (
       <nav className="navbar navbar-expand-md bg-dark navbar-dark py-3">
         <div className="container">
@@ -44,7 +44,7 @@ class NavBar extends Component {
               <NavLink to="/cart" className="nav-item nav-link">
                 <i className="fa fa-shopping-cart">
                   {" "}
-                  <span className="badge badge-light counter">1</span>
+                  <span className="badge badge-light counter">{quantity}</span>
                 </i>
               </NavLink>
 

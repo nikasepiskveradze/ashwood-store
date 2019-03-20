@@ -20,7 +20,7 @@ class Card extends Component {
             <p className="card-text">{short}</p>
             <p className="card-text">{price}$</p>
             <p>
-              <button>Add To Card</button>
+              <button onClick={this.props.onClick}>Add To Card</button>
             </p>
           </div>
         </div>
