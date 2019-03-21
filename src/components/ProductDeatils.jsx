@@ -10,7 +10,6 @@ class ProductDetails extends Component {
     const id = this.props.match.params.id;
     const { data: product } = await productService.getProduct(id);
 
-    console.log(product);
     this.setState({ product });
   }
 

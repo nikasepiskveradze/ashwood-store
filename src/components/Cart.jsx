@@ -1,34 +1,13 @@
 import React, { Component } from "react";
 import Counter from "./common/Counter";
-import { Link } from "react-router-dom";
+import EmptyCart from "./common/EmptyCart";
 
 class Cart extends Component {
   render() {
     const { cart } = this.props;
 
     if (cart.length === 0) {
-      return (
-        <div className="py-5 bg-light" id="no-items">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6 m-auto text-center">
-                <div className="py-3">
-                  <i
-                    className="fa fa-shopping-cart"
-                    style={{ fontSize: 120 }}
-                  />
-                </div>
-
-                <h2 className="mb-3">YOUR SHOPPING CART IS EMPTY</h2>
-
-                <Link to="/products" className="btn btn-primary px-4">
-                  RETURN TO SHOP
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+      return <EmptyCart />;
     }
 
     return (
@@ -88,7 +67,7 @@ class Cart extends Component {
           <div className="row py-3">
             <div className="col-md-4 offset-8 text-right">
               <h2 className="pb-2">Total: {this.props.total}$</h2>
-              <button className="btn btn-primary text-right">
+              <button className="btn btn-primary text-right px-3 py-2">
                 Process Checkout
               </button>
             </div>
