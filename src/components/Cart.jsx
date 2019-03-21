@@ -1,9 +1,36 @@
 import React, { Component } from "react";
 import Counter from "./common/Counter";
+import { Link } from "react-router-dom";
 
 class Cart extends Component {
   render() {
     const { cart } = this.props;
+
+    if (cart.length === 0) {
+      return (
+        <div className="py-5 bg-light" id="no-items">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6 m-auto text-center">
+                <div className="py-3">
+                  <i
+                    className="fa fa-shopping-cart"
+                    style={{ fontSize: 120 }}
+                  />
+                </div>
+
+                <h2 className="mb-3">YOUR SHOPPING CART IS EMPTY</h2>
+
+                <Link to="/products" className="btn btn-primary px-4">
+                  RETURN TO SHOP
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div id="cart" className="py-4">
         <div className="container">
@@ -14,7 +41,7 @@ class Cart extends Component {
                 <th>Product</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th>Total</th>
+                <th>Total Price</th>
                 <th>Remove</th>
               </tr>
             </thead>
@@ -31,7 +58,7 @@ class Cart extends Component {
                   <td style={{ paddingTop: 70 }}>
                     <h2 className="h5">{item.short}</h2>
                   </td>
-                  <td style={{ paddingTop: 70 }}>{item.price}</td>
+                  <td style={{ paddingTop: 70 }}>{item.price}$</td>
                   <td style={{ paddingTop: 70 }}>
                     <Counter
                       onHandleIncrement={() =>
@@ -44,7 +71,7 @@ class Cart extends Component {
                     />
                   </td>
                   <td style={{ paddingTop: 70 }}>
-                    {item.quantity * item.price}
+                    {item.quantity * item.price}$
                   </td>
                   <td style={{ paddingTop: 70 }}>
                     <button
