@@ -16,25 +16,27 @@ import * as loginService from "./services/loginService";
 
 class App extends Component {
   state = {
-    quantity: 0
+    number: 0,
+    cart: []
   };
 
   componentDidMount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const user = loginService.getCurrentUser();
-    this.setState({ user });
+    this.setState({ user, cart, number: cart.length });
   }
 
   handleAddToCard = product => {
-    const quantity = this.state.quantity + 1;
-    this.setState({ quantity });
-    console.log(product);
+    const newCart = [...this.state.cart, product];
+    localStorage.setItem("cart", JSON.stringify(newCart));
+    this.setState({ cart: newCart, number: newCart.length });
   };
 
   render() {
-    const { user, quantity } = this.state;
+    const { user, number } = this.state;
     return (
       <React.Fragment>
-        <NavBar user={user} quantity={quantity} />
+        <NavBar user={user} number={number} />
 
         <Switch>
           <Route
