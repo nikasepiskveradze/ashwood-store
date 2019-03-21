@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Counter from "./common/Counter";
 import * as productService from "../services/productSevice";
 
 class ProductDetails extends Component {
@@ -35,8 +34,6 @@ class ProductDetails extends Component {
               <p>
                 <strong className="text-primary h4">{price}$</strong>
               </p>
-
-              <Counter />
 
               <p>
                 <button

@@ -17,19 +17,61 @@ import * as loginService from "./services/loginService";
 class App extends Component {
   state = {
     number: 0,
+    total: 0,
     cart: []
   };
 
   componentDidMount() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const user = loginService.getCurrentUser();
-    this.setState({ user, cart, number: cart.length });
+    this.setState({
+      user,
+      cart,
+      number: cart.length,
+      total: this.calculateTotal()
+    });
   }
 
   handleAddToCard = product => {
     const newCart = [...this.state.cart, product];
     localStorage.setItem("cart", JSON.stringify(newCart));
-    this.setState({ cart: newCart, number: newCart.length });
+    this.setState({
+      cart: newCart,
+      number: newCart.length,
+      total: this.calculateTotal()
+    });
+  };
+
+  handleIncrement = product => {
+    const cart = [...this.state.cart];
+    const index = this.state.cart.indexOf(product);
+    product.quantity += 1;
+
+    cart[index] = product;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    this.setState({ cart, total: this.calculateTotal() });
+  };
+
+  handleDecrement = product => {
+    const cart = [...this.state.cart];
+    const index = this.state.cart.indexOf(product);
+    if (product.quantity <= 1) return;
+    product.quantity -= 1;
+
+    cart[index] = product;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    this.setState({ cart, total: this.calculateTotal() });
+  };
+
+  calculateTotal = () => {
+    let sum = 0;
+    const cart = JSON.parse(localStorage.getItem("cart"));
+
+    cart.forEach(item => {
+      sum += item.quantity * item.price;
+    });
+
+    return sum;
   };
 
   render() {
@@ -57,7 +99,18 @@ class App extends Component {
           <Route path="/logout" component={Logout} />
           <Route path="/register" component={Register} />
           <Route path="/profile" component={Profile} />
-          <Route path="/cart" component={Cart} />
+          <Route
+            path="/cart"
+            render={props => (
+              <Cart
+                {...props}
+                cart={this.state.cart}
+                total={this.state.total}
+                onHandleIncrement={this.handleIncrement}
+                onHandleDecrement={this.handleDecrement}
+              />
+            )}
+          />
           <Route path="/" component={Home} />
         </Switch>
 

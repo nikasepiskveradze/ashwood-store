@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import images from "../images/cloth_1.jpg";
 import Counter from "./common/Counter";
 
 class Cart extends Component {
-  state = {};
   render() {
+    const { cart } = this.props;
     return (
       <div id="cart" className="py-4">
         <div className="container">
@@ -23,22 +22,48 @@ class Cart extends Component {
               </tr>
             </thead>
             <tbody>
-              <td className="align-middle">
-                <img src={images} alt="" style={{ width: 200 }} />
-              </td>
-              <td>
-                <h2 className="h5 align-middle">Top Up T-Shirt</h2>
-              </td>
-              <td>$49.00</td>
-              <td>
-                <Counter />
-              </td>
-              <td>$49.00</td>
-              <td>
-                <button className="btn btn-primary">X</button>
-              </td>
+              {cart.map(item => (
+                <tr key={item._id}>
+                  <td>
+                    <img
+                      src={`http://localhost:5000/${item.image}`}
+                      alt=""
+                      style={{ width: 200 }}
+                    />
+                  </td>
+                  <td style={{ paddingTop: 70 }}>
+                    <h2 className="h5">{item.short}</h2>
+                  </td>
+                  <td style={{ paddingTop: 70 }}>{item.price}</td>
+                  <td style={{ paddingTop: 70 }}>
+                    <Counter
+                      onHandleIncrement={() =>
+                        this.props.onHandleIncrement(item)
+                      }
+                      onHandleDecrement={() =>
+                        this.props.onHandleDecrement(item)
+                      }
+                      quantity={item.quantity}
+                    />
+                  </td>
+                  <td style={{ paddingTop: 70 }}>
+                    {item.quantity * item.price}
+                  </td>
+                  <td style={{ paddingTop: 70 }}>
+                    <button className="btn btn-primary">X</button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
+          <div className="row py-3">
+            <div className="col-md-4 offset-8 text-right">
+              <h2 className="pb-2">Total: {this.props.total}$</h2>
+              <button className="btn btn-primary text-right">
+                Process Checkout
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     );
