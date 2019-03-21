@@ -118,3 +118,11 @@ code {
 .list-group-item {
   cursor: pointer;
 }
+
+.slick-prev:before {
+  color: #000;
+}
+
+.slick-next:before {
+  color: #000;
+}
