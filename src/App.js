@@ -63,6 +63,15 @@ class App extends Component {
     this.setState({ cart, total: this.calculateTotal() });
   };
 
+  handleRemove = product => {
+    const cart = [...this.state.cart];
+    const index = cart.indexOf(product);
+    cart.splice(index, 1);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    this.setState({ cart, number: cart.length, total: this.calculateTotal() });
+  };
+
   calculateTotal = () => {
     let sum = 0;
     const cart = JSON.parse(localStorage.getItem("cart"));
@@ -108,6 +117,7 @@ class App extends Component {
                 total={this.state.total}
                 onHandleIncrement={this.handleIncrement}
                 onHandleDecrement={this.handleDecrement}
+                onHandleRemove={this.handleRemove}
               />
             )}
           />

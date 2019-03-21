@@ -7,10 +7,7 @@ class Cart extends Component {
     return (
       <div id="cart" className="py-4">
         <div className="container">
-          <table
-            className="table table-bordered text-center"
-            style={{ height: 200 }}
-          >
+          <table className="table table-bordered text-center">
             <thead>
               <tr>
                 <th>Image</th>
@@ -50,7 +47,12 @@ class Cart extends Component {
                     {item.quantity * item.price}
                   </td>
                   <td style={{ paddingTop: 70 }}>
-                    <button className="btn btn-primary">X</button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => this.props.onHandleRemove(item)}
+                    >
+                      X
+                    </button>
                   </td>
                 </tr>
               ))}
