@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Counter from "./common/Counter";
 import EmptyCart from "./common/EmptyCart";
+import { Link } from "react-router-dom";
 
 class Cart extends Component {
   render() {
@@ -67,9 +68,12 @@ class Cart extends Component {
           <div className="row py-3">
             <div className="col-md-4 offset-8 text-right">
               <h2 className="pb-2">Total: {this.props.total}$</h2>
-              <button className="btn btn-primary text-right px-3 py-2">
+              <Link
+                to="/checkout"
+                className="btn btn-primary text-right px-3 py-2"
+              >
                 Process Checkout
-              </button>
+              </Link>
             </div>
           </div>
         </div>

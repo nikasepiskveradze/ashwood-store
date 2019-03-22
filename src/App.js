@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
-import Footer from "./components/Footer";
 import Products from "./components/Products";
 import About from "./components/About";
 import Contact from "./components/Contact";
@@ -12,6 +11,7 @@ import Logout from "./components/Logout";
 import ProductDetails from "./components/ProductDeatils";
 import Profile from "./components/Profile";
 import Cart from "./components/Cart";
+import Checkout from "./components/common/Checkout";
 import * as loginService from "./services/loginService";
 import * as cartService from "./services/cartService";
 
@@ -125,6 +125,10 @@ class App extends Component {
                 onHandleRemove={this.handleRemove}
               />
             )}
+          />
+          <Route
+            path="/checkout"
+            render={props => <Checkout {...props} total={this.state.total} />}
           />
           <Route path="/" component={Home} />
         </Switch>
