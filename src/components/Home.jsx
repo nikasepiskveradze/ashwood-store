@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Showcase from "./Showcase";
 import Section from "./Section";
 import Featured from "./Featured";
+import Footer from "./Footer";
 import * as productService from "../services/productSevice";
 
 class Home extends Component {
@@ -25,6 +26,7 @@ class Home extends Component {
         <Showcase />
         <Section />
         <Featured featured={this.state.featured} />
+        <Footer />
       </React.Fragment>
     );
   }

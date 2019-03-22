@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from "./Card";
 import Pagination from "./common/Pagination";
 import ListGroup from "./common/ListGroup";
+import Footer from "./Footer";
 import * as productService from "../services/productSevice";
 import * as categoryService from "../services/categoryService";
 import { paginate } from "../utils/paginate";
@@ -51,38 +52,41 @@ class Products extends Component {
     const products = paginate(filtered, currentPage, pageSize);
 
     return (
-      <div id="products" className="bg-light  py-4">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-3 mb-2">
-              <ListGroup
-                items={categories}
-                selectedItem={selectedCategory}
-                onItemSelect={this.handleCategorySelect}
-              />
-            </div>
-
-            <div className="col-md-9">
-              <div className="row">
-                {products.map(product => (
-                  <Card
-                    key={product._id}
-                    product={product}
-                    onClick={() => this.props.onClick(product)}
-                  />
-                ))}
+      <React.Fragment>
+        <div id="products" className="bg-light  py-4">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-3 mb-2">
+                <ListGroup
+                  items={categories}
+                  selectedItem={selectedCategory}
+                  onItemSelect={this.handleCategorySelect}
+                />
               </div>
 
-              <Pagination
-                itemsCount={filtered.length}
-                pageSize={pageSize}
-                currentPage={currentPage}
-                onPageChange={this.handlePageChange}
-              />
+              <div className="col-md-9">
+                <div className="row">
+                  {products.map(product => (
+                    <Card
+                      key={product._id}
+                      product={product}
+                      onClick={() => this.props.onClick(product)}
+                    />
+                  ))}
+                </div>
+
+                <Pagination
+                  itemsCount={filtered.length}
+                  pageSize={pageSize}
+                  currentPage={currentPage}
+                  onPageChange={this.handlePageChange}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        <Footer />
+      </React.Fragment>
     );
   }
 }

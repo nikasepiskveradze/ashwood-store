@@ -22,7 +22,7 @@ class Profile extends Component {
     const { name, email, age, birthday, balance } = this.state.user;
 
     return (
-      <div id="profile" className="py-4 bg-light">
+      <div id="profile" className="py-4">
         <div className="container">
           <h2 className="mb-3">My Profile</h2>
 

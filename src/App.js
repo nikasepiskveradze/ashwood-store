@@ -129,7 +129,7 @@ class App extends Component {
           <Route path="/" component={Home} />
         </Switch>
 
-        <Footer />
+        {/* <Footer /> */}
       </React.Fragment>
     );
   }

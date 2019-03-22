@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const EmptyCart = () => {
   return (
-    <div className="py-5 bg-light" id="no-items">
+    <div className="py-5" id="no-items">
       <div className="container">
         <div className="row">
           <div className="col-md-6 m-auto text-center">
