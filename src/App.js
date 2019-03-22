@@ -79,7 +79,7 @@ class App extends Component {
 
   calculateTotal = () => {
     let sum = 0;
-    const cart = cartService.getCartsFromStorage();
+    const cart = cartService.getCartsFromStorage() || [];
 
     cart.forEach(item => {
       sum += item.quantity * item.price;

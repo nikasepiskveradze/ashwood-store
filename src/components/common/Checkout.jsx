@@ -2,6 +2,7 @@ import React from "react";
 import Joi from "joi-browser";
 import Form from "./Form";
 import * as cartService from "../../services/cartService";
+import * as checkoutService from "../../services/checkoutService";
 
 class Checkout extends Form {
   state = {
@@ -45,17 +46,18 @@ class Checkout extends Form {
 
   componentDidMount() {
     const cart = cartService.getCartsFromStorage();
-
     this.setState({ cart });
   }
 
   doSubmit = async () => {
     try {
-      // const { data } = this.state;
-      // await loginService.login(data.email, data.password);
-      // window.location = "/";
+      const { data: customer, cart } = this.state;
+      await checkoutService.checkout(customer, cart);
+
+      cartService.removeCartsFromStorage();
+      window.location = "/thanks";
     } catch (ex) {
-      console.log("err");
+      // console.log("err");
       // if (ex.response && ex.response.status === 400) {
       //   const errors = { ...this.state.errors };
       //   errors.email = ex.response.data;
@@ -76,8 +78,8 @@ class Checkout extends Form {
           </div>
 
           <div className="row">
-            <div className="col-md-6">
-              <h2>Billing Info</h2>
+            <div className="col-md-6 order-sm-2 order-md-1">
+              <h2>Checkout Info</h2>
               <form onSubmit={this.handleSubmit}>
                 {this.renderInput("firstname", "Firstname")}
                 {this.renderInput("lastname", "Lastname")}
@@ -89,11 +91,14 @@ class Checkout extends Form {
                 {this.renderButton("Place Order")}
               </form>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 order-sm-1 order-md-2">
               <h2 className="py-3">Review Order</h2>
               <div className="list-group">
                 {this.state.cart.map(cart => (
-                  <div className="list-group-item d-flex justify-content-between">
+                  <div
+                    key={cart._id}
+                    className="list-group-item d-flex justify-content-between"
+                  >
                     <div>
                       <div>Product: {cart.title}</div>
                       <div>Quantity: {cart.quantity}</div>

@@ -8,6 +8,7 @@ import users from "./server/routes/users";
 import login from "./server/routes/login";
 import products from "./server/routes/products";
 import category from "./server/routes/category";
+import orders from "./server/routes/orders";
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use("/api/users", users);
 app.use("/api/login", login);
 app.use("/api/category", category);
 app.use("/api/products", products);
+app.use("/api/orders", orders);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening http://localhost:${port}`));

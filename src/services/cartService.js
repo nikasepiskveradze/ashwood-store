@@ -7,3 +7,7 @@ export function getCartsFromStorage() {
 export function setCartsToStorage(cart) {
   localStorage.setItem(cartKey, JSON.stringify(cart));
 }
+
+export function removeCartsFromStorage() {
+  localStorage.removeItem(cartKey);
+}
