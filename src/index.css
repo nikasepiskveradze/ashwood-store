@@ -27,7 +27,8 @@ code {
 }
 
 #showcase {
-  background: url("./images/bg-header.png") no-repeat;
+  /* background: url("./images/bg-header.png") no-repeat; */
+  background: url("./images/showcase.jpg") no-repeat;
   background-size: cover;
   background-attachment: fixed;
   height: 750px;
