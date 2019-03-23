@@ -126,3 +126,22 @@ code {
 .slick-next:before {
   color: #000;
 }
+
+.contact-bg-image {
+  background: url("./images/bg-01.jpg") no-repeat;
+  /* height: 839px; */
+  width: 560px;
+  height: 400px;
+  color: white;
+  /* position: relative; */
+}
+
+.overlay {
+  /* position: absolute; */
+  margin-top: 30px;
+  margin-left: -10px;
+  padding: 20px;
+  /* width: 100%; */
+  /* height: 100%; */
+  background: rgba(0, 0, 0, 0.4);
+}
