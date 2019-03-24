@@ -9,7 +9,11 @@ const router = express.Router();
 
 router.get("/me", auth, async (req, res) => {
   const user = await User.findById(req.user._id).select("-password");
-  const userOrder = await Order.find({ userId: req.user._id }).select("cart");
+  let userOrder = await Order.find({ userId: req.user._id }).select(
+    "cart -_id"
+  );
+
+  userOrder = _.flattenDeep(userOrder.map(item => item.cart));
 
   const userDetails = {
     user: { ...user._doc },

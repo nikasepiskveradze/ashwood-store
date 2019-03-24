@@ -1,25 +1,30 @@
 import React, { Component } from "react";
+import BoughtItems from "./common/BoughtItems";
+import ProfileAbout from "./common/ProfileAbout";
 import * as profileService from "../services/profileService";
 
 class Profile extends Component {
   state = {
-    user: {
-      name: "",
-      email: "",
-      age: "",
-      birthday: "",
-      balance: ""
+    profile: {
+      user: {
+        name: "",
+        email: "",
+        age: "",
+        birthday: "",
+        balance: ""
+      },
+      orders: []
     }
   };
 
   async componentDidMount() {
-    const { data: user } = await profileService.getUserInfo();
-    console.log(user);
-    this.setState({ user });
+    const { data: profile } = await profileService.getUserInfo();
+    console.log(profile);
+    this.setState({ profile });
   }
 
   render() {
-    const { name, email, age, birthday, balance } = this.state.user;
+    const { user, orders } = this.state.profile;
 
     return (
       <div id="profile" className="py-4">
@@ -41,34 +46,15 @@ class Profile extends Component {
 
           <div className="tab-content">
             <div id="about" className="tab-pane fade show active">
-              <div className="row mt-3">
-                <div className="col-md-2">Name</div>
-                <div className="col-md-4">{name}</div>
-              </div>
-
-              <div className="row mt-3">
-                <div className="col-md-2">Email</div>
-                <div className="col-md-4">{email}</div>
-              </div>
-
-              <div className="row mt-3">
-                <div className="col-md-2">Age</div>
-                <div className="col-md-4">{age}</div>
-              </div>
-
-              <div className="row mt-3">
-                <div className="col-md-2">Birthday</div>
-                <div className="col-md-4">{birthday}</div>
-              </div>
-
-              <div className="row mt-3">
-                <div className="col-md-2">Balance</div>
-                <div className="col-md-4">{balance}$</div>
-              </div>
+              <ProfileAbout user={user} />
             </div>
 
             <div id="bought" className="tab-pane fade">
-              No Items Bought
+              {orders.length === 0 ? (
+                <h2 className="mt-2">No Items Bought</h2>
+              ) : (
+                <BoughtItems orders={orders} />
+              )}
             </div>
           </div>
         </div>
