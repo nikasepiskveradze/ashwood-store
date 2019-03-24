@@ -2,13 +2,21 @@ import _ from "lodash";
 import express from "express";
 import bcrypt from "bcrypt";
 import { User, validate } from "../models/user";
+import { Order } from "../models/order";
 import auth from "../middleware/auth";
 
 const router = express.Router();
 
 router.get("/me", auth, async (req, res) => {
   const user = await User.findById(req.user._id).select("-password");
-  res.send(user);
+  const userOrder = await Order.find({ userId: req.user._id }).select("cart");
+
+  const userDetails = {
+    user: { ...user._doc },
+    orders: [...userOrder]
+  };
+
+  res.status(200).send(userDetails);
 });
 
 router.post("/", async (req, res) => {
