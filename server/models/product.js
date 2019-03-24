@@ -29,6 +29,10 @@ const productSchema = new mongoose.Schema(
       type: categorySchema,
       required: true
     },
+    quantity: {
+      type: Number,
+      default: 1
+    },
     price: {
       type: Number,
       required: true

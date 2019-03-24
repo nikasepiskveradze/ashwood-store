@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
-import Footer from "./components/Footer";
 import Products from "./components/Products";
 import About from "./components/About";
 import Contact from "./components/Contact";
@@ -12,29 +11,89 @@ import Logout from "./components/Logout";
 import ProductDetails from "./components/ProductDeatils";
 import Profile from "./components/Profile";
 import Cart from "./components/Cart";
+import Checkout from "./components/common/Checkout";
+import Thanks from "./components/common/Thanks";
 import * as loginService from "./services/loginService";
+import * as cartService from "./services/cartService";
 
 class App extends Component {
   state = {
-    quantity: 0
+    number: 0,
+    total: 0,
+    cart: []
   };
 
   componentDidMount() {
+    const cart = cartService.getCartsFromStorage() || [];
     const user = loginService.getCurrentUser();
-    this.setState({ user });
+    this.setState({
+      user,
+      cart,
+      number: cart.length,
+      total: this.calculateTotal()
+    });
   }
 
   handleAddToCard = product => {
-    const quantity = this.state.quantity + 1;
-    this.setState({ quantity });
-    console.log(product);
+    const newCart = [...this.state.cart, product];
+    cartService.setCartsToStorage(newCart);
+
+    this.setState({
+      cart: newCart,
+      number: newCart.length,
+      total: this.calculateTotal()
+    });
+  };
+
+  handleIncrement = product => {
+    const cart = [...this.state.cart];
+    const index = this.state.cart.indexOf(product);
+    product.quantity += 1;
+
+    cart[index] = product;
+    cartService.setCartsToStorage(cart);
+
+    this.setState({ cart, total: this.calculateTotal() });
+  };
+
+  handleDecrement = product => {
+    const cart = [...this.state.cart];
+    const index = this.state.cart.indexOf(product);
+    if (product.quantity <= 1) return;
+    product.quantity -= 1;
+
+    cart[index] = product;
+    cartService.setCartsToStorage(cart);
+
+    this.setState({ cart, total: this.calculateTotal() });
+  };
+
+  handleRemove = product => {
+    const cart = [...this.state.cart];
+    const index = cart.indexOf(product);
+    cart.splice(index, 1);
+
+    cartService.setCartsToStorage(cart);
+
+    this.setState({ cart, number: cart.length, total: this.calculateTotal() });
+  };
+
+  calculateTotal = () => {
+    let sum = 0;
+    const cart = cartService.getCartsFromStorage() || [];
+
+    cart.forEach(item => {
+      sum += item.quantity * item.price;
+    });
+
+    return sum;
   };
 
   render() {
-    const { user, quantity } = this.state;
+    const { user, number } = this.state;
     return (
       <React.Fragment>
-        <NavBar user={user} quantity={quantity} />
+        <NavBar user={user} number={number} />
 
         <Switch>
           <Route
@@ -55,11 +114,28 @@ class App extends Component {
           <Route path="/logout" component={Logout} />
           <Route path="/register" component={Register} />
           <Route path="/profile" component={Profile} />
-          <Route path="/cart" component={Cart} />
+          <Route
+            path="/cart"
+            render={props => (
+              <Cart
+                {...props}
+                cart={this.state.cart}
+                total={this.state.total}
+                onHandleIncrement={this.handleIncrement}
+                onHandleDecrement={this.handleDecrement}
+                onHandleRemove={this.handleRemove}
+              />
+            )}
+          />
+          <Route
+            path="/checkout"
+            render={props => <Checkout {...props} total={this.state.total} />}
+          />
+          <Route path="/thanks" component={Thanks} />
           <Route path="/" component={Home} />
         </Switch>
 
-        <Footer />
+        {/* <Footer /> */}
       </React.Fragment>
     );
   }
