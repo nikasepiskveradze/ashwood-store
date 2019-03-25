@@ -15,7 +15,7 @@ const Showcase = () => {
             </p>
 
             <Link to="/products" className="btn btn-primary mt-5 py-2 px-5">
-              BUY NOW
+              SHOP NOW
             </Link>
           </div>
         </div>
