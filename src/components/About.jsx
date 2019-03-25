@@ -5,15 +5,6 @@ import keti from "../images/keti.jpg";
 import tamar from "../images/tamar.jpg";
 import cloth from "../images/cloth.jpg";
 
-const white_ball = {
-  background: "white",
-  width: "90px",
-  height: "90px",
-  marginTop: "-205px",
-  marginLeft: "210px",
-  position: "absolute"
-};
-
 const teamPictures = {
   width: "120px",
   height: "120px",
@@ -29,7 +20,7 @@ class About extends Component {
         <div class="container-fluid w-75 mb-5 mt-5 pt-5">
           <div class="row mb-5">
             <div class="col-sm-12 col-md-7 col-lg-6 mb-5">
-              <img src={cloth} class="img-fluid" />
+              <img src={cloth} class="img-fluid" alt="" />
             </div>
             <div class="col-sm-12 col-md-5 col-lg-6 mb-5">
               <h2 class="mb-3">How We Started</h2>
@@ -56,6 +47,7 @@ class About extends Component {
                 class="rounded-circle img-fluid team-pictures"
                 style={teamPictures}
                 src={sepiskver}
+                alt=""
               />
               <h5 class="text-center font-weight-light">Nika Sepiskveradze</h5>
               <h6 class="d-block text-center font-weigh-light text-uppercase text-muted font-weight-lighter">
@@ -72,6 +64,7 @@ class About extends Component {
                 class="rounded-circle img-fluid"
                 style={teamPictures}
                 src={keti}
+                alt=""
               />
               <h5 class="text-center font-weight-light">Ketevan Natobaidze</h5>
               <h6 class="d-block text-center font-weigh-light text-uppercase text-muted font-weight-lighter">
@@ -88,6 +81,7 @@ class About extends Component {
                 class="rounded-circle img-fluid team-pictures"
                 style={teamPictures}
                 src={tamar}
+                alt=""
               />
               <h5 class="text-center font-weight-light">
                 Tamar Menteshashvili
