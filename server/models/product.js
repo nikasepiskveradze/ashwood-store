@@ -13,17 +13,18 @@ const productSchema = new mongoose.Schema(
     short: {
       type: String,
       required: true,
-      minlength: 10,
+      minlength: 5,
       maxlength: 30
     },
     long: {
       type: String,
       required: true,
-      minlength: 15,
+      minlength: 5,
       maxlength: 500
     },
     image: {
-      type: String
+      type: String,
+      default: "uploads/unknown.jpg"
     },
     category: {
       type: categorySchema,
@@ -34,7 +35,7 @@ const productSchema = new mongoose.Schema(
       default: 1
     },
     price: {
-      type: Number,
+      type: String,
       required: true
     }
   },
@@ -50,16 +51,15 @@ function validateProduct(product) {
       .max(25)
       .required(),
     short: Joi.string()
-      .min(10)
+      .min(5)
       .max(30)
       .required(),
     long: Joi.string()
-      .min(15)
+      .min(5)
       .max(500)
       .required(),
-    image: Joi.string(),
-    category: Joi.objectId().required(),
-    price: Joi.number().required()
+    category: Joi.string().required(),
+    price: Joi.string().required()
   };
 
   return Joi.validate(product, schema);

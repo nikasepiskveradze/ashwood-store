@@ -99,6 +99,7 @@ class App extends Component {
 
         <Switch>
           <Route path="/products/edit/:id" component={ProductForm} />
+          <Route path="/products/new" component={ProductForm} />
           <Route
             path="/products/:id"
             render={props => (

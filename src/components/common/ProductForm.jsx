@@ -18,6 +18,7 @@ class ProductForm extends Form {
   };
 
   schema = {
+    _id: Joi.string(),
     title: Joi.string()
       .required()
       .label("Title"),
@@ -27,7 +28,7 @@ class ProductForm extends Form {
     long: Joi.string()
       .required()
       .label("Long Description"),
-    price: Joi.number()
+    price: Joi.string()
       .required()
       .label("Price"),
     category: Joi.string()
@@ -39,15 +40,16 @@ class ProductForm extends Form {
     const { data: categories } = await categoryService.getProductCategories();
     this.setState({ categories });
 
-    const productId = this.props.match.params.id;
-    if (productId === "new") return;
+    const productId = this.props.match.url.split("/");
+    if (productId[2] === "new") return;
 
-    const { data: product } = await productService.getProduct(productId);
+    const { data: product } = await productService.getProduct(productId[3]);
     this.setState({ data: this.mapToViewModel(product) });
   }
 
   mapToViewModel(product) {
     return {
+      _id: product._id,
       title: product.title,
       short: product.short,
       long: product.long,
@@ -56,8 +58,13 @@ class ProductForm extends Form {
     };
   }
 
-  doSubmit = () => {
-    console.log("Save Product");
+  doSubmit = async () => {
+    const sendData = { ...this.state.data };
+    sendData["image"] = this.state.file;
+
+    const { data: product } = await productService.saveProduct(sendData);
+
+    this.props.history.push("/dashboard");
   };
 
   render() {
@@ -70,6 +77,11 @@ class ProductForm extends Form {
             {this.renderSelect("category", "Category", this.state.categories)}
             {this.renderInput("short", "Short Description")}
             {this.renderInput("long", "Long Description")}
+            <input
+              type="file"
+              name="image"
+              onChange={e => this.setState({ file: e.target.files[0] })}
+            />
             {this.renderInput("price", "Price", "number")}
             {this.renderButton("Save")}
           </form>

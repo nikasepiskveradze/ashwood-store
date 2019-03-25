@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import Joi from "joi";
 Joi.objectId = require("joi-objectid")(Joi);
 import cors from "cors";
+import "express-async-errors";
 
 import users from "./server/routes/users";
 import login from "./server/routes/login";
