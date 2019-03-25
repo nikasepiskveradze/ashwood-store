@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BoughtItems from "./common/BoughtItems";
 import ProfileAbout from "./common/ProfileAbout";
+import { Link } from "react-router-dom";
 import * as profileService from "../services/profileService";
 
 class Profile extends Component {
@@ -25,11 +26,17 @@ class Profile extends Component {
 
   render() {
     const { user, orders } = this.state.profile;
+    const { user: currentUser } = this.props;
 
     return (
       <div id="profile" className="py-4">
         <div className="container">
           <h2 className="mb-3">My Profile</h2>
+          {currentUser.isAdmin && (
+            <Link to="/dashboard" className="btn btn-success mb-2">
+              Admin Panel
+            </Link>
+          )}
 
           <ul className="nav nav-tabs">
             <li className="nav-item">

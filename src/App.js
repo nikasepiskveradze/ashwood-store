@@ -13,6 +13,8 @@ import Profile from "./components/Profile";
 import Cart from "./components/Cart";
 import Checkout from "./components/common/Checkout";
 import Thanks from "./components/common/Thanks";
+import Dashboard from "./components/Dashboard";
+import ProductForm from "./components/common/ProductForm";
 import * as loginService from "./services/loginService";
 import * as cartService from "./services/cartService";
 
@@ -96,6 +98,7 @@ class App extends Component {
         <NavBar user={user} number={number} />
 
         <Switch>
+          <Route path="/products/edit/:id" component={ProductForm} />
           <Route
             path="/products/:id"
             render={props => (
@@ -113,7 +116,10 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
           <Route path="/register" component={Register} />
-          <Route path="/profile" component={Profile} />
+          <Route
+            path="/profile"
+            render={props => <Profile {...props} user={user} />}
+          />
           <Route
             path="/cart"
             render={props => (
@@ -132,10 +138,9 @@ class App extends Component {
             render={props => <Checkout {...props} total={this.state.total} />}
           />
           <Route path="/thanks" component={Thanks} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route path="/" component={Home} />
         </Switch>
-
-        {/* <Footer /> */}
       </React.Fragment>
     );
   }
