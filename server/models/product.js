@@ -7,20 +7,17 @@ const productSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      minlength: 5,
-      maxlength: 25
+      minlength: 5
     },
     short: {
       type: String,
       required: true,
-      minlength: 5,
-      maxlength: 30
+      minlength: 5
     },
     long: {
       type: String,
       required: true,
-      minlength: 5,
-      maxlength: 500
+      minlength: 5
     },
     image: {
       type: String,
@@ -48,15 +45,12 @@ function validateProduct(product) {
   const schema = {
     title: Joi.string()
       .min(5)
-      .max(25)
       .required(),
     short: Joi.string()
       .min(5)
-      .max(30)
       .required(),
     long: Joi.string()
       .min(5)
-      .max(500)
       .required(),
     category: Joi.string().required(),
     price: Joi.string().required()
