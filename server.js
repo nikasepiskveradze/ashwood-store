@@ -13,8 +13,12 @@ import orders from "./server/routes/orders";
 
 const app = express();
 
+const attlasian =
+  "mongodb+srv://ashwood:ashwooduniversity@ashwood-q15s9.mongodb.net/test?retryWrites=true";
+const url = "mongodb://localhost/ashwood";
+
 mongoose
-  .connect("mongodb://localhost/ashwood", {
+  .connect(attlasian, {
     useNewUrlParser: true,
     useCreateIndex: true
   })
