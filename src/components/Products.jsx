@@ -66,17 +66,17 @@ class Products extends Component {
               </div>
 
               <div className="col-md-9">
-                <div className="row">
-                  <div className="card-columns">
-                    {products.map(product => (
-                      <Card
-                        key={product._id}
-                        product={product}
-                        onClick={() => this.props.onClick(product)}
-                      />
-                    ))}
-                  </div>
+                {/* <div className="row"> */}
+                <div className="card-columns">
+                  {products.map(product => (
+                    <Card
+                      key={product._id}
+                      product={product}
+                      onClick={() => this.props.onClick(product)}
+                    />
+                  ))}
                 </div>
+                {/* </div> */}
 
                 <Pagination
                   itemsCount={filtered.length}
