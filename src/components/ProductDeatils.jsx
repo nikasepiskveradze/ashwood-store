@@ -27,8 +27,14 @@ class ProductDetails extends Component {
               />
             </div>
             <div className="col-md-6">
-              <h2 className="text-black">{title}</h2>
-              <p className="text-muted mb-4">{long}</p>
+              <h2 className="text-black mb-3">{title}</h2>
+
+              <div className="mb-1 text-muted">Size: 12</div>
+              <div className="mb-1 text-muted">Material: 100% Cotton</div>
+              <div className="mb-1 text-muted">Color: White-Yellow</div>
+              <div className="mb-1 text-muted">Weight: 0.4 KG</div>
+
+              <p className="text-muted mb-4 mt-2">{long}</p>
 
               <p>
                 <strong className="text-primary h4">{price}$</strong>
