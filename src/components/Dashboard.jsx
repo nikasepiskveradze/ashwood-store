@@ -41,7 +41,7 @@ class Dashboard extends Component {
       <div id="dashborad" className="py-3">
         <div className="container">
           <div className="row">
-            <div className="col-md-9">
+            <div className="col-md-12">
               <h2 className="mb-3">Products Dashboard</h2>
 
               <Link to="/products/new" className="btn btn-primary mb-2">
