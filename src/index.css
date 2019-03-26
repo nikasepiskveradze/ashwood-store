@@ -146,8 +146,6 @@ code {
   /* height: 100%; */
   background: rgba(0, 0, 0, 0.4);
 }
-<<<<<<< HEAD
-=======
 
 .card-columns {
   column-count: 1;
@@ -164,4 +162,3 @@ code {
     column-count: 3;
   }
 }
->>>>>>> 8d772fd9e790311772c47fee394749d9bee3f4df
