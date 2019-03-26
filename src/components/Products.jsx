@@ -22,9 +22,10 @@ class Products extends Component {
       ...categories
     ];
 
-    const { data: products } = await productService.getAllProducts().reverse();
+    const { data: products } = await productService.getAllProducts();
+    const latestProducts = products.reverse();
 
-    this.setState({ products, categories: newCategories });
+    this.setState({ products: latestProducts, categories: newCategories });
   }
 
   handlePageChange = page => {
@@ -65,7 +66,8 @@ class Products extends Component {
               </div>
 
               <div className="col-md-9">
-                <div className="row card-columns">
+                {/* <div className="row"> */}
+                <div className="card-columns">
                   {products.map(product => (
                     <Card
                       key={product._id}
@@ -74,6 +76,7 @@ class Products extends Component {
                     />
                   ))}
                 </div>
+                {/* </div> */}
 
                 <Pagination
                   itemsCount={filtered.length}

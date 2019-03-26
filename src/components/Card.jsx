@@ -5,25 +5,25 @@ class Card extends Component {
   render() {
     const { _id, title, short, image, price } = this.props.product;
     return (
-      <div className="col-sm-6 col-lg-4 mb-3">
-        <div className="card">
-          <img
-            className="card-img-top"
-            src={`http://localhost:5000/${image}`}
-            alt=""
-          />
+      // <div className="col-sm-6 col-lg-4 mb-3">
+      <div className="card">
+        <img
+          className="card-img-top"
+          src={`http://localhost:5000/${image}`}
+          alt=""
+        />
 
-          <div className="card-body text-center">
-            <h5 className="card-title">
-              <Link to={`/products/${_id}`}>{title}</Link>
-            </h5>
-            <p className="card-text">{short}</p>
-            <p className="card-text">{price}$</p>
-            <p>
-              <button onClick={this.props.onClick}>Add To Card</button>
-            </p>
-          </div>
+        <div className="card-body text-center">
+          <h5 className="card-title">
+            <Link to={`/products/${_id}`}>{title}</Link>
+          </h5>
+          <p className="card-text">{short}</p>
+          <p className="card-text">{price}$</p>
+          <p>
+            <button onClick={this.props.onClick}>Add To Card</button>
+          </p>
         </div>
+        {/* </div> */}
       </div>
     );
   }

@@ -146,3 +146,22 @@ code {
   /* height: 100%; */
   background: rgba(0, 0, 0, 0.4);
 }
+<<<<<<< HEAD
+=======
+
+.card-columns {
+  column-count: 1;
+}
+
+@media (min-width: 768px) {
+  .card-columns {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 992px) {
+  .card-columns {
+    column-count: 3;
+  }
+}
+>>>>>>> 8d772fd9e790311772c47fee394749d9bee3f4df
