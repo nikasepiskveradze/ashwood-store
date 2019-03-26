@@ -46,19 +46,21 @@ class Dashboard extends Component {
                     <th>Description</th>
                     <th>Price</th>
                     <th />
+                    <th />
                   </tr>
                 </thead>
                 <tbody>
                   {products.map(product => (
                     <tr key={product._id}>
-                      <td>
-                        <Link to={`/products/edit/${product._id}`}>
-                          {product.title}
-                        </Link>
-                      </td>
+                      <td>{product.title}</td>
                       <td>{product.category.name}</td>
                       <td>{product.short}</td>
                       <td>{product.price}</td>
+                      <td>
+                        <Link to={`/products/edit/${product._id}`}>
+                          <button className="btn btn-info">Edit</button>
+                        </Link>
+                      </td>
                       <td>
                         <button className="btn btn-danger">Delete</button>
                       </td>
