@@ -34,3 +34,7 @@ export function saveProduct(product) {
 
   return http.post(`${apiEndPoint}`, formData);
 }
+
+export function removeProduct(id) {
+  return http.delete(`${apiEndPoint}/${id}`);
+}

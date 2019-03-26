@@ -22,6 +22,16 @@ class Dashboard extends Component {
     this.setState({ currentPage: page });
   };
 
+  handleProductDelete = async product => {
+    const products = [...this.state.products];
+    const index = products.indexOf(product);
+    products.splice(index, 1);
+
+    await productService.removeProduct(product._id);
+
+    this.setState({ products });
+  };
+
   render() {
     const { products: allProducts, pageSize, currentPage } = this.state;
 
@@ -62,7 +72,12 @@ class Dashboard extends Component {
                         </Link>
                       </td>
                       <td>
-                        <button className="btn btn-danger">Delete</button>
+                        <button
+                          onClick={() => this.handleProductDelete(product)}
+                          className="btn btn-danger"
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   ))}

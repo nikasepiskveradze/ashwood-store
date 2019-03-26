@@ -77,4 +77,9 @@ router.put("/:id", upload.single("image"), async (req, res) => {
   res.status(200).send(product);
 });
 
+router.delete("/:id", async (req, res) => {
+  const product = await Product.findByIdAndRemove(req.params.id);
+  res.status(200).send(product);
+});
+
 export default router;
