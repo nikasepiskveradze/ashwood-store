@@ -1,8 +1,6 @@
 ## Ashwood Store
 
-## Project Description
-
-This is the online store for Ashwood University, here you can buy, cloth, shoes, accessores and other university staffs, everything for students.
+This is the online store for Ashwood University, here you can buy, cloth, shoes, accessores and other university staffs, simple user interface will help you to interact easly, cart and checkout system with super easy UI, everything for students and not only.
 
 ## Clone Project
 
