@@ -22,7 +22,7 @@ class Products extends Component {
       ...categories
     ];
 
-    const { data: products } = await productService.getAllProducts();
+    const { data: products } = await productService.getAllProducts().reverse();
 
     this.setState({ products, categories: newCategories });
   }
