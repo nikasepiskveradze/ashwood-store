@@ -27,5 +27,10 @@ export function saveProduct(product) {
   // }
 
   // const config = { headers: { "content-type": "multipart/form-data" } };
+
+  if (product._id) {
+    return http.put(`${apiEndPoint}/${product._id}`, formData);
+  }
+
   return http.post(`${apiEndPoint}`, formData);
 }

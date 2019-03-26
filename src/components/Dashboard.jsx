@@ -13,9 +13,9 @@ class Dashboard extends Component {
 
   async componentDidMount() {
     const { data: products } = await productService.getAllProducts();
-    console.log(products);
+    const latestProducts = products.reverse();
 
-    this.setState({ products });
+    this.setState({ products: latestProducts });
   }
 
   handlePageChange = page => {

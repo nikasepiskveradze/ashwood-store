@@ -62,7 +62,7 @@ class ProductForm extends Form {
     const sendData = { ...this.state.data };
     sendData["image"] = this.state.file;
 
-    const { data: product } = await productService.saveProduct(sendData);
+    await productService.saveProduct(sendData);
 
     this.props.history.push("/dashboard");
   };
