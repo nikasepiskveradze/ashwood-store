@@ -14,7 +14,7 @@ const BoughtItems = ({ orders }) => {
         </tr>
       </thead>
       <tbody>
-        {orders.map(order => (
+        {orders.reverse().map(order => (
           <tr key={Math.random()}>
             <td>
               <img

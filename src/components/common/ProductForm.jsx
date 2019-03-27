@@ -82,7 +82,6 @@ class ProductForm extends Form {
                   this.state.categories
                 )}
                 {this.renderInput("short", "Short Description")}
-                {/* {this.renderInput("long", "Long Description")} */}
                 {this.renderTextarea("long", "Long Description")}
 
                 <input
