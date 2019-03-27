@@ -69,22 +69,33 @@ class ProductForm extends Form {
 
   render() {
     return (
-      <div>
+      <div className="py-2">
         <div className="container">
-          <h2>Product Form</h2>
-          <form onSubmit={this.handleSubmit}>
-            {this.renderInput("title", "Title")}
-            {this.renderSelect("category", "Category", this.state.categories)}
-            {this.renderInput("short", "Short Description")}
-            {this.renderInput("long", "Long Description")}
-            <input
-              type="file"
-              name="image"
-              onChange={e => this.setState({ file: e.target.files[0] })}
-            />
-            {this.renderInput("price", "Price", "number")}
-            {this.renderButton("Save")}
-          </form>
+          <div className="row">
+            <div className="col-md-8 m-auto">
+              <h2>Product Form</h2>
+              <form onSubmit={this.handleSubmit}>
+                {this.renderInput("title", "Title")}
+                {this.renderSelect(
+                  "category",
+                  "Category",
+                  this.state.categories
+                )}
+                {this.renderInput("short", "Short Description")}
+                {/* {this.renderInput("long", "Long Description")} */}
+                {this.renderTextarea("long", "Long Description")}
+
+                <input
+                  className="mb-2"
+                  type="file"
+                  name="image"
+                  onChange={e => this.setState({ file: e.target.files[0] })}
+                />
+                {this.renderInput("price", "Price", "number")}
+                {this.renderButton("Save")}
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     );
