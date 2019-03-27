@@ -20,19 +20,17 @@ class Profile extends Component {
 
   async componentDidMount() {
     const { data: profile } = await profileService.getUserInfo();
-    console.log(profile);
     this.setState({ profile });
   }
 
   render() {
     const { user, orders } = this.state.profile;
-    const { user: currentUser } = this.props;
 
     return (
       <div id="profile" className="py-4">
         <div className="container">
           <h2 className="mb-3">My Profile</h2>
-          {currentUser.isAdmin && (
+          {user.isAdmin && (
             <Link to="/dashboard" className="btn btn-success mb-2">
               Admin Panel
             </Link>

@@ -14,9 +14,9 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { title, short, long, image, price } = this.state.product;
+    const { title, long, image, price } = this.state.product;
     return (
-      <div id="productDetail" className="bg-light py-4">
+      <div id="productDetail" className=" py-4">
         <div className="container">
           <div className="row">
             <div className="col-md-6">
@@ -27,17 +27,18 @@ class ProductDetails extends Component {
               />
             </div>
             <div className="col-md-6">
-              <h2 className="text-black mb-3">{title}</h2>
+              <h2
+                className="text-black mb-3"
+                style={{ textDecoration: "underline", cursor: "pointer" }}
+              >
+                {title}
+              </h2>
 
-              <div className="mb-1 text-muted">Size: 12</div>
-              <div className="mb-1 text-muted">Material: 100% Cotton</div>
-              <div className="mb-1 text-muted">Color: White-Yellow</div>
-              <div className="mb-1 text-muted">Weight: 0.4 KG</div>
-
-              <p className="text-muted mb-4 mt-2">{long}</p>
+              <div className="text-muted mb-1">Description: </div>
+              <div className="text-muted mb-4">{long}</div>
 
               <p>
-                <strong className="text-primary h4">{price}$</strong>
+                <strong className="text-primary h4">Price: {price}$</strong>
               </p>
 
               <p>

@@ -6,9 +6,13 @@ const token = loginService.getJwt();
 const apiEndPoint = `${apiUrl}/orders`;
 
 export function checkout(customer, cart) {
-  return http.post(
-    apiEndPoint,
-    { customer, cart },
-    { headers: { "x-auth-token": token } }
-  );
+  if (token) {
+    return http.post(
+      apiEndPoint,
+      { customer, cart },
+      { headers: { "x-auth-token": token } }
+    );
+  }
+
+  return null;
 }

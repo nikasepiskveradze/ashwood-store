@@ -52,7 +52,12 @@ class Checkout extends Form {
   doSubmit = async () => {
     try {
       const { data: customer, cart } = this.state;
-      await checkoutService.checkout(customer, cart);
+      const order = await checkoutService.checkout(customer, cart);
+
+      if (!order) {
+        window.location = "/login";
+        return;
+      }
 
       cartService.removeCartsFromStorage();
       window.location = "/thanks";
