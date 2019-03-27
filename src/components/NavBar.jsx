@@ -8,7 +8,7 @@ class NavBar extends Component {
       <nav className="navbar navbar-expand-md bg-dark navbar-dark py-3">
         <div className="container">
           <Link to="/" className="navbar-brand mr-5">
-            ASHWOOD
+            Ashwood University
           </Link>
 
           <button
