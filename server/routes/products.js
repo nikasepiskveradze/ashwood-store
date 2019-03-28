@@ -3,6 +3,8 @@ import express from "express";
 import { Product, validate } from "../models/product";
 import { Category } from "../models/category";
 import multer from "multer";
+import auth from "../middleware/auth";
+import admin from "../middleware/admin";
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -26,7 +28,7 @@ router.get("/:id", async (req, res) => {
   res.status(200).send(product);
 });
 
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", auth, admin, upload.single("image"), async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -51,7 +53,7 @@ router.post("/", upload.single("image"), async (req, res) => {
   res.status(200).send(product);
 });
 
-router.put("/:id", upload.single("image"), async (req, res) => {
+router.put("/:id", auth, admin, upload.single("image"), async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -77,7 +79,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
   res.status(200).send(product);
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, admin, async (req, res) => {
   const product = await Product.findByIdAndRemove(req.params.id);
   res.status(200).send(product);
 });

@@ -1,6 +1,8 @@
 import http from "./httpService";
 import { apiUrl } from "../config.json";
+import * as loginService from "./loginService";
 
+const token = loginService.getJwt();
 const apiEndPoint = `${apiUrl}/products`;
 
 export function getAllProducts() {
@@ -29,12 +31,18 @@ export function saveProduct(product) {
   // const config = { headers: { "content-type": "multipart/form-data" } };
 
   if (product._id) {
-    return http.put(`${apiEndPoint}/${product._id}`, formData);
+    return http.put(`${apiEndPoint}/${product._id}`, formData, {
+      headers: { "x-auth-token": token }
+    });
   }
 
-  return http.post(`${apiEndPoint}`, formData);
+  return http.post(`${apiEndPoint}`, formData, {
+    headers: { "x-auth-token": token }
+  });
 }
 
 export function removeProduct(id) {
-  return http.delete(`${apiEndPoint}/${id}`);
+  return http.delete(`${apiEndPoint}/${id}`, {
+    headers: { "x-auth-token": token }
+  });
 }
