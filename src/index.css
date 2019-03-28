@@ -51,6 +51,23 @@ code {
   margin: auto;
 }
 
+.showcase-content h1 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .showcase-content h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .showcase-content h1 {
+    font-size: 3.5rem;
+  }
+}
+
 #section-1 h2 {
   font-size: 18px;
   color: black;

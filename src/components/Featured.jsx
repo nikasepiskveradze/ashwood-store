@@ -10,6 +10,7 @@ const Featured = props => {
     autoplay: true,
     centerMode: true,
     variableWidth: true,
+    adaptiveHeight: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplaySpeed: 3000

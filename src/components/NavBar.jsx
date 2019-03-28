@@ -5,7 +5,7 @@ class NavBar extends Component {
   render() {
     const { user, number } = this.props;
     return (
-      <nav className="navbar navbar-expand-md bg-dark navbar-dark py-3">
+      <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3">
         <div className="container">
           <Link to="/" className="navbar-brand mr-5">
             Ashwood University
