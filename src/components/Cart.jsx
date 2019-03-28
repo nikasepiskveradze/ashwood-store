@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 
 class Cart extends Component {
   render() {
-    const { cart } = this.props;
+    const { cart, user } = this.props;
 
     if (cart.length === 0) {
       return <EmptyCart />;
     }
+
+    const isLogged = user ? "/checkout" : "/login";
 
     return (
       <div id="cart" className="py-4">
@@ -69,7 +71,7 @@ class Cart extends Component {
             <div className="col-md-4 offset-8 text-right">
               <h2 className="pb-2">Total: {this.props.total}$</h2>
               <Link
-                to="/checkout"
+                to={isLogged}
                 className="btn btn-primary text-right px-3 py-2"
               >
                 Process Checkout

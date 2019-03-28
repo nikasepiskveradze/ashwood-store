@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Showcase = () => {
   return (
@@ -13,12 +12,6 @@ const Showcase = () => {
             <p className="mt-3 text-center">
               Ashwood University's online shop.
             </p>
-
-            {/* <div className="w-75 m-auto">
-              <Link to="/products" className="btn btn-primary mt-5 py-2 px-5 ">
-                SHOP NOW
-              </Link>
-            </div> */}
           </div>
         </div>
       </div>

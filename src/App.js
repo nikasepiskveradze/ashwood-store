@@ -128,6 +128,7 @@ class App extends Component {
                 {...props}
                 cart={this.state.cart}
                 total={this.state.total}
+                user={user}
                 onHandleIncrement={this.handleIncrement}
                 onHandleDecrement={this.handleDecrement}
                 onHandleRemove={this.handleRemove}
