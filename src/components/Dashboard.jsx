@@ -48,41 +48,43 @@ class Dashboard extends Component {
                 New Product
               </Link>
 
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th />
-                    <th />
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map(product => (
-                    <tr key={product._id}>
-                      <td>{product.title}</td>
-                      <td>{product.category.name}</td>
-                      <td>{product.short}</td>
-                      <td>{product.price}</td>
-                      <td>
-                        <Link to={`/products/edit/${product._id}`}>
-                          <button className="btn btn-info">Edit</button>
-                        </Link>
-                      </td>
-                      <td>
-                        <button
-                          onClick={() => this.handleProductDelete(product)}
-                          className="btn btn-danger"
-                        >
-                          Delete
-                        </button>
-                      </td>
+              <div className="table-responsive">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Category</th>
+                      <th>Description</th>
+                      <th>Price</th>
+                      <th />
+                      <th />
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {products.map(product => (
+                      <tr key={product._id}>
+                        <td>{product.title}</td>
+                        <td>{product.category.name}</td>
+                        <td>{product.short}</td>
+                        <td>{product.price}</td>
+                        <td>
+                          <Link to={`/products/edit/${product._id}`}>
+                            <button className="btn btn-info">Edit</button>
+                          </Link>
+                        </td>
+                        <td>
+                          <button
+                            onClick={() => this.handleProductDelete(product)}
+                            className="btn btn-danger"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
               <Pagination
                 itemsCount={allProducts.length}
