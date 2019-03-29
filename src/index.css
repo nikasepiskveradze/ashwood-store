@@ -146,9 +146,11 @@ code {
 }
 
 .contact-bg-image {
-  background: url("./images/bg-01.jpg") no-repeat;
+  /* background: url("./images/bg-01.jpg") no-repeat; */
+  background: url("./images//contact-bg.png") no-repeat;
   /* height: 839px; */
-  width: 560px;
+  /* width: 560px; */
+  /* width: 100%; */
   height: 400px;
   color: white;
   /* position: relative; */
@@ -161,7 +163,7 @@ code {
   padding: 20px;
   /* width: 100%; */
   /* height: 100%; */
-  background: rgba(0, 0, 0, 0.4);
+  /* background: rgba(0, 0, 0, 0.4); */
 }
 
 .card-columns {

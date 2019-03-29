@@ -1,6 +1,7 @@
 import express from "express";
 import { Category, validate } from "../models/category";
 import auth from "../middleware/auth";
+import admin from "../middleware/admin";
 
 const router = express.Router();
 
@@ -9,7 +10,7 @@ router.get("/", async (req, res) => {
   res.status(200).send(categories);
 });
 
-router.post("/", auth, async (req, res) => {
+router.post("/", auth, admin, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
