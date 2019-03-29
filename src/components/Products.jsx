@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from "./Card";
 import Pagination from "./common/Pagination";
 import ListGroup from "./common/ListGroup";
+import SearchBox from "./common/SearchBox";
 import Footer from "./Footer";
 import * as productService from "../services/productSevice";
 import * as categoryService from "../services/categoryService";
@@ -12,7 +13,9 @@ class Products extends Component {
     products: [],
     categories: [],
     pageSize: 9,
-    currentPage: 1
+    currentPage: 1,
+    selectedCategory: null,
+    searchQuery: ""
   };
 
   async componentDidMount() {
@@ -33,7 +36,19 @@ class Products extends Component {
   };
 
   handleCategorySelect = category => {
-    this.setState({ selectedCategory: category, currentPage: 1 });
+    this.setState({
+      selectedCategory: category,
+      searchQuery: "",
+      currentPage: 1
+    });
+  };
+
+  handleSearch = query => {
+    this.setState({
+      searchQuery: query,
+      selectedCategory: null,
+      currentPage: 1
+    });
   };
 
   render() {
@@ -42,13 +57,22 @@ class Products extends Component {
       pageSize,
       currentPage,
       categories,
-      selectedCategory
+      selectedCategory,
+      searchQuery
     } = this.state;
 
-    const filtered =
-      selectedCategory && selectedCategory._id
-        ? allProducts.filter(m => m.category._id === selectedCategory._id)
-        : allProducts;
+    console.log(allProducts);
+
+    let filtered = allProducts;
+    if (searchQuery) {
+      filtered = allProducts.filter(m =>
+        m.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+      );
+    } else if (selectedCategory && selectedCategory._id) {
+      filtered = allProducts.filter(
+        m => m.category._id === selectedCategory._id
+      );
+    }
 
     const products = paginate(filtered, currentPage, pageSize);
 
@@ -66,6 +90,7 @@ class Products extends Component {
               </div>
 
               <div className="col-md-9">
+                <SearchBox value={searchQuery} onChange={this.handleSearch} />
                 <div className="card-columns">
                   {products.map(product => (
                     <Card
