@@ -103,7 +103,11 @@ class App extends Component {
           <Route
             path="/products/:id"
             render={props => (
-              <ProductDetails {...props} onClick={this.handleAddToCard} />
+              <ProductDetails
+                {...props}
+                user={user}
+                onClick={this.handleAddToCard}
+              />
             )}
           />
           <Route
