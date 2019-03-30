@@ -5,16 +5,20 @@ import * as commentService from "../services/commentService";
 class ProductDetails extends Component {
   state = {
     product: { title: "", short: "", long: "", image: "", price: "" },
-    comment: { value: "" }
+    comment: { value: "" },
+    comments: []
   };
 
   async componentDidMount() {
     const id = this.props.match.params.id;
     const { data: product } = await productService.getProduct(id);
+    const { data: comments } = await commentService.getProductComments(id);
+    const latestComments = comments.reverse();
 
     this.setState({
       product,
-      comment: { value: "" }
+      comment: { value: "" },
+      comments: latestComments
     });
   }
 
@@ -28,8 +32,8 @@ class ProductDetails extends Component {
       comment
     });
 
-    console.log(data);
-    this.setState({ comment: { value: "" } });
+    const comments = [data, ...this.state.comments];
+    this.setState({ comment: { value: "" }, comments });
   };
 
   handleCommentChange = e => {
@@ -80,40 +84,41 @@ class ProductDetails extends Component {
             <React.Fragment>
               <ul className="nav nav-tabs mt-4">
                 <li className="nav-item">
-                  <a
-                    className="nav-link active"
-                    href="#comments"
-                    data-toggle="tab"
-                  >
+                  <a className="nav-link" href="#comments" data-toggle="tab">
                     Comments
                   </a>
                 </li>
 
                 <li className="nav-item">
-                  <a className="nav-link" href="#add" data-toggle="tab">
+                  <a className="nav-link active" href="#add" data-toggle="tab">
                     Add Comments
                   </a>
                 </li>
               </ul>
 
               <div className="tab-content">
-                <div id="comments" className="tab-pane fade show active">
+                <div id="comments" className="tab-pane fade show">
                   <ul className="media-list col-md-12">
-                    <li className="media media-replied mb-2">
-                      <div className="media-body">
-                        <div className="card card-body bg-light">
-                          <h5 className="card-title media-heading text-uppercase reviews">
-                            Nika Sepiskveradze
-                          </h5>
+                    {this.state.comments.map(comment => (
+                      <li
+                        key={comment._id}
+                        className="media media-replied mb-2"
+                      >
+                        <div className="media-body">
+                          <div className="card card-body bg-light">
+                            <h5 className="card-title media-heading text-uppercase reviews">
+                              {comment.name}
+                            </h5>
 
-                          <p className="media-comment">Nice job Maria.</p>
+                            <p className="media-comment">{comment.comment}</p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
-                <div id="add" className="tab-pane fade show">
+                <div id="add" className="tab-pane fade show active">
                   <form onSubmit={this.handleComment}>
                     <div className="form-group">
                       <label htmlFor="comment" className="col-sm-2">

@@ -4,6 +4,11 @@ import { Comment } from "../models/comment";
 
 const router = express.Router();
 
+router.get("/:id", async (req, res) => {
+  const comments = await Comment.find({ productId: req.params.id });
+  res.status(200).send(comments);
+});
+
 router.post("/", auth, async (req, res) => {
   const comment = new Comment({
     productId: req.body.productId,
@@ -12,7 +17,6 @@ router.post("/", auth, async (req, res) => {
   });
 
   await comment.save();
-
   res.status(200).send(comment);
 });
 
