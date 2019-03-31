@@ -9,6 +9,10 @@ export function getUserInfo() {
   return http.get(apiEndPoint, { headers: { "x-auth-token": token } });
 }
 
+export function updateUser(user) {
+  return http.put(apiEndPoint, user, { headers: { "x-auth-token": token } });
+}
+
 export function updateBalance(balance) {
   return http.put(
     `${apiUrl}/users/checkout`,

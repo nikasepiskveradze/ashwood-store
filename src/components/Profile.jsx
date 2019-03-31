@@ -15,13 +15,47 @@ class Profile extends Component {
         balance: ""
       },
       orders: []
-    }
+    },
+    edit: false,
+    errors: {}
   };
 
   async componentDidMount() {
     const { data: profile } = await profileService.getUserInfo();
     this.setState({ profile });
   }
+
+  submitEditChange = async () => {
+    try {
+      const { name, email, age, birthday } = this.state.profile.user;
+      await profileService.updateUser({
+        name,
+        email,
+        age,
+        birthday
+      });
+
+      this.setState({ edit: false, errors: {} });
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.email = ex.response.data;
+        this.setState({ errors });
+      }
+    }
+  };
+
+  handleEditInfo = () => {
+    const edit = !this.state.edit;
+    this.setState({ edit });
+  };
+
+  handleEditChange = e => {
+    const profile = { ...this.state.profile };
+    profile.user[e.currentTarget.name] = e.currentTarget.value;
+
+    this.setState({ profile });
+  };
 
   render() {
     const { user, orders } = this.state.profile;
@@ -32,9 +66,28 @@ class Profile extends Component {
           <h2 className="mb-3">My Profile</h2>
           {user.isAdmin && (
             <Link to="/dashboard" className="btn btn-success mb-2">
-              Admin Panel
+              Dashboard
             </Link>
           )}
+
+          <button
+            className="btn btn-info mb-2 ml-2"
+            onClick={this.handleEditInfo}
+          >
+            Edit User Info
+          </button>
+
+          <button
+            className={
+              !this.state.edit
+                ? "btn btn-primary mb-2 ml-2 disabled"
+                : "btn btn-primary mb-2 ml-2"
+            }
+            // className="btn btn-primary mb-2 ml-2 disabled"
+            onClick={this.submitEditChange}
+          >
+            Update User Info
+          </button>
 
           <ul className="nav nav-tabs">
             <li className="nav-item">
@@ -51,7 +104,12 @@ class Profile extends Component {
 
           <div className="tab-content">
             <div id="about" className="tab-pane fade show active">
-              <ProfileAbout user={user} />
+              <ProfileAbout
+                user={user}
+                edit={this.state.edit}
+                handleChange={this.handleEditChange}
+                errors={this.state.errors}
+              />
             </div>
 
             <div id="bought" className="tab-pane fade">

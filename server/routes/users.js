@@ -23,6 +23,32 @@ router.get("/me", auth, async (req, res) => {
   res.status(200).send(userDetails);
 });
 
+router.put("/me", auth, async (req, res) => {
+  const ownUser = await User.findOne({
+    _id: req.user._id,
+    email: req.body.email
+  });
+
+  let user;
+  if (!ownUser) {
+    user = await User.findOne({ email: req.body.email });
+    if (user) return res.status(400).send("User this email already registered");
+  }
+
+  user = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      name: req.body.name,
+      email: req.body.email,
+      age: req.body.age,
+      birthday: req.body.birthday
+    },
+    { new: true }
+  );
+
+  res.status(200).send(user);
+});
+
 router.put("/checkout", auth, async (req, res) => {
   const user = await User.findByIdAndUpdate(
     req.user._id,
