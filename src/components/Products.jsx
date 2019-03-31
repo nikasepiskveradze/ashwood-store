@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import Card from "./Card";
 import Pagination from "./common/Pagination";
@@ -15,6 +16,7 @@ class Products extends Component {
     pageSize: 9,
     currentPage: 1,
     selectedCategory: null,
+    selectedOrder: null,
     searchQuery: ""
   };
 
@@ -30,6 +32,15 @@ class Products extends Component {
 
     this.setState({ products: latestProducts, categories: newCategories });
   }
+
+  handleFilterSelect = order => {
+    this.setState({
+      selectedOrder: order,
+      selectedCategory: null,
+      searchQuery: "",
+      currentPage: 1
+    });
+  };
 
   handlePageChange = page => {
     this.setState({ currentPage: page });
@@ -58,10 +69,9 @@ class Products extends Component {
       currentPage,
       categories,
       selectedCategory,
+      selectedOrder,
       searchQuery
     } = this.state;
-
-    console.log(allProducts);
 
     let filtered = allProducts;
     if (searchQuery) {
@@ -72,6 +82,8 @@ class Products extends Component {
       filtered = allProducts.filter(
         m => m.category._id === selectedCategory._id
       );
+    } else if (selectedOrder) {
+      filtered = _.orderBy(allProducts, ["title"], [selectedOrder]);
     }
 
     const products = paginate(filtered, currentPage, pageSize);
@@ -90,7 +102,11 @@ class Products extends Component {
               </div>
 
               <div className="col-md-9">
-                <SearchBox value={searchQuery} onChange={this.handleSearch} />
+                <SearchBox
+                  value={searchQuery}
+                  onFilter={this.handleFilterSelect}
+                  onChange={this.handleSearch}
+                />
                 <div className="card-columns">
                   {products.map(product => (
                     <Card
