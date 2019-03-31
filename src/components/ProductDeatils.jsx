@@ -111,6 +111,9 @@ class ProductDetails extends Component {
               }
             >
               <ul className="media-list col-md-12">
+                {!this.state.comments.length && (
+                  <h4>There are no reviews...</h4>
+                )}
                 {this.state.comments.map(comment => (
                   <li key={comment._id} className="media media-replied mb-2">
                     <div className="media-body">
