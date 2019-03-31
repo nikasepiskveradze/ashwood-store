@@ -14,15 +14,6 @@ const SearchBox = ({ value, onChange, onFilter }) => {
 
         <div className="dropdown-menu">
           <button
-            onClick={() => onFilter(null)}
-            className="dropdown-item btn btn-light"
-            type="button"
-          >
-            All Products
-          </button>
-
-          <div className="dropdown-divider" />
-          <button
             onClick={() => onFilter("asc")}
             className="dropdown-item btn btn-light"
           >

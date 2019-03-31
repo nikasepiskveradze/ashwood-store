@@ -190,34 +190,51 @@ code {
   border-bottom-left-radius: 4px;
 }
 
-/* .media .media-object {
-  max-width: 120px;
+.single {
+  padding: 0px 15px 30px;
+  /* margin-top: 40px; */
+  background: #fcfcfc;
+  border: 1px solid #f0f0f0;
 }
-.media-body {
-  position: relative;
-}
-.media-date {
-  position: absolute;
-  right: 25px;
-  top: 25px;
-}
-.media-date li {
+.single h3.side-title {
+  margin: 0;
+  margin-bottom: 10px;
   padding: 0;
+  font-size: 20px;
+  color: #333;
+  text-transform: uppercase;
 }
-.media-date li:first-child:before {
+.single h3.side-title:after {
   content: "";
+  width: 60px;
+  height: 1px;
+  background: #ff173c;
+  display: block;
+  margin-top: 6px;
 }
-.media-date li:before {
-  content: ".";
-  margin-left: -2px;
-  margin-right: 2px;
+
+.single ul {
+  margin-bottom: 0;
 }
-.media-comment {
-  margin-bottom: 20px;
+.single li {
+  color: #666;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 40px;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
 }
-.media-replied {
-  margin: 0 0 20px 50px;
+
+.single li:hover {
+  color: #ff173c;
 }
-.media-replied .media-heading {
-  padding-left: 6px;
-} */
+
+.category-active {
+  color: #ff173c !important;
+}
+
+.single li:last-child a {
+  border-bottom: 0;
+}

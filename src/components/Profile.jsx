@@ -65,15 +65,12 @@ class Profile extends Component {
         <div className="container">
           <h2 className="mb-3">My Profile</h2>
           {user.isAdmin && (
-            <Link to="/dashboard" className="btn btn-success mb-2">
+            <Link to="/dashboard" className="btn btn-success mb-2 mr-2">
               Dashboard
             </Link>
           )}
 
-          <button
-            className="btn btn-info mb-2 ml-2"
-            onClick={this.handleEditInfo}
-          >
+          <button className="btn btn-info mb-2" onClick={this.handleEditInfo}>
             Edit User Info
           </button>
 

@@ -63,7 +63,7 @@ class Register extends Form {
             <div className="col-7 m-auto">
               <h2>Registration</h2>
               <form onSubmit={this.handleSubmit}>
-                {this.renderInput("name", "Name")}
+                {this.renderInput("name", "Name and Lastname")}
                 {this.renderInput("email", "Email")}
                 {this.renderInput("password", "Passwowrd", "password")}
                 {this.renderInput("age", "Age", "number")}
