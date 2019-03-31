@@ -8,3 +8,11 @@ const apiEndPoint = `${apiUrl}/users/me`;
 export function getUserInfo() {
   return http.get(apiEndPoint, { headers: { "x-auth-token": token } });
 }
+
+export function updateBalance(balance) {
+  return http.put(
+    `${apiUrl}/users/checkout`,
+    { balance },
+    { headers: { "x-auth-token": token } }
+  );
+}

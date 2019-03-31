@@ -3,6 +3,7 @@ import Joi from "joi-browser";
 import Form from "./Form";
 import * as cartService from "../../services/cartService";
 import * as checkoutService from "../../services/checkoutService";
+import * as profileService from "../../services/profileService";
 
 class Checkout extends Form {
   state = {
@@ -44,15 +45,21 @@ class Checkout extends Form {
       .label("Email")
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const cart = cartService.getCartsFromStorage();
-    this.setState({ cart });
+    const { data: user } = await profileService.getUserInfo();
+    console.log(user);
+    this.setState({ cart, user });
   }
 
   doSubmit = async () => {
     try {
-      const { data: customer, cart } = this.state;
+      const { data: customer, cart, user } = this.state;
+      const { total } = this.props;
+      const totalPrice = parseInt(user.user.balance - total);
+
       await checkoutService.checkout(customer, cart);
+      await profileService.updateBalance(totalPrice);
 
       cartService.removeCartsFromStorage();
       window.location = "/thanks";

@@ -23,6 +23,18 @@ router.get("/me", auth, async (req, res) => {
   res.status(200).send(userDetails);
 });
 
+router.put("/checkout", auth, async (req, res) => {
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      balance: req.body.balance
+    },
+    { new: true }
+  );
+
+  res.status(200).send(user);
+});
+
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
