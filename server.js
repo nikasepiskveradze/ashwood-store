@@ -19,7 +19,7 @@ const attlasian =
 const url = "mongodb://localhost/ashwood";
 
 mongoose
-  .connect(attlasian, {
+  .connect(url, {
     useNewUrlParser: true,
     useCreateIndex: true
   })

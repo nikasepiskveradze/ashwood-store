@@ -43,6 +43,7 @@ class ProductDetails extends Component {
   render() {
     const { title, long, image, price } = this.state.product;
     const { user } = this.props;
+
     return (
       <div id="productDetail" className=" py-4">
         <div className="container">
@@ -80,44 +81,54 @@ class ProductDetails extends Component {
             </div>
           </div>
 
-          {user && (
-            <React.Fragment>
-              <ul className="nav nav-tabs mt-4">
-                <li className="nav-item">
-                  <a className="nav-link" href="#comments" data-toggle="tab">
-                    Comments
-                  </a>
-                </li>
+          <ul className="nav nav-tabs mt-4">
+            <li className="nav-item">
+              <a
+                className={user ? "nav-link" : "nav-link active"}
+                href="#comments"
+                data-toggle="tab"
+              >
+                Comments
+              </a>
+            </li>
 
+            {user && (
+              <React.Fragment>
                 <li className="nav-item">
                   <a className="nav-link active" href="#add" data-toggle="tab">
                     Add Comments
                   </a>
                 </li>
+              </React.Fragment>
+            )}
+          </ul>
+
+          <div className="tab-content">
+            <div
+              id="comments"
+              className={
+                user ? "tab-pane fade show" : "tab-pane fade show active"
+              }
+            >
+              <ul className="media-list col-md-12">
+                {this.state.comments.map(comment => (
+                  <li key={comment._id} className="media media-replied mb-2">
+                    <div className="media-body">
+                      <div className="card card-body bg-light">
+                        <h5 className="card-title media-heading text-uppercase reviews">
+                          {comment.name}
+                        </h5>
+
+                        <p className="media-comment">{comment.comment}</p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
               </ul>
+            </div>
 
-              <div className="tab-content">
-                <div id="comments" className="tab-pane fade show">
-                  <ul className="media-list col-md-12">
-                    {this.state.comments.map(comment => (
-                      <li
-                        key={comment._id}
-                        className="media media-replied mb-2"
-                      >
-                        <div className="media-body">
-                          <div className="card card-body bg-light">
-                            <h5 className="card-title media-heading text-uppercase reviews">
-                              {comment.name}
-                            </h5>
-
-                            <p className="media-comment">{comment.comment}</p>
-                          </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
+            {user && (
+              <React.Fragment>
                 <div id="add" className="tab-pane fade show active">
                   <form onSubmit={this.handleComment}>
                     <div className="form-group">
@@ -150,9 +161,9 @@ class ProductDetails extends Component {
                     </div>
                   </form>
                 </div>
-              </div>
-            </React.Fragment>
-          )}
+              </React.Fragment>
+            )}
+          </div>
         </div>
       </div>
     );
