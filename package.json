@@ -30,6 +30,7 @@
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "react-scripts build",
     "client": "react-scripts start",
     "server": "nodemon --exec babel-node server.js"
   },
