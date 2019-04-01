@@ -9,7 +9,7 @@ class Card extends Component {
       <div className="card">
         <img
           className="card-img-top"
-          src={`http://localhost:5000/${image}`}
+          src={`https://cherry-pie-80014.herokuapp.com/${image}`}
           alt=""
         />
 

@@ -7,7 +7,7 @@ const FeaturedCard = ({ itemInfo }) => {
     <div className="card mx-1 my-3" style={{ width: 350, height: 450 }}>
       <img
         className="card-img-top"
-        src={`http://localhost:5000/${image}`}
+        src={`https://cherry-pie-80014.herokuapp.com/${image}`}
         alt=""
         height="300"
       />

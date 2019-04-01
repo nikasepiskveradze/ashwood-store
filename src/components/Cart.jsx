@@ -33,7 +33,9 @@ class Cart extends Component {
                   <tr key={item._id}>
                     <td>
                       <img
-                        src={`http://localhost:5000/${item.image}`}
+                        src={`https://cherry-pie-80014.herokuapp.com/${
+                          item.image
+                        }`}
                         alt=""
                         style={{ width: 200 }}
                       />

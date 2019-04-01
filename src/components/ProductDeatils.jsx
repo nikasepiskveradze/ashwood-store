@@ -50,7 +50,7 @@ class ProductDetails extends Component {
           <div className="row">
             <div className="col-md-6">
               <img
-                src={`http://localhost:5000/${image}`}
+                src={`https://cherry-pie-80014.herokuapp.com/${image}`}
                 alt=""
                 className="img-fluid"
               />
