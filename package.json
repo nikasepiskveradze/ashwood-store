@@ -2,6 +2,7 @@
   "name": "ashwood-store",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sebiskver.github.io/ashwood-store/",
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^3.0.4",
@@ -11,6 +12,7 @@
     "express-async-errors": "^3.1.1",
     "font-awesome": "^4.7.0",
     "form-data": "^2.3.3",
+    "gh-pages": "^2.0.1",
     "joi": "^14.3.1",
     "joi-browser": "^13.4.0",
     "joi-objectid": "^2.0.0",
@@ -32,7 +34,9 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "build": "react-scripts build",
     "client": "react-scripts start",
-    "server": "nodemon --exec babel-node server.js"
+    "server": "nodemon --exec babel-node server.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
