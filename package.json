@@ -2,7 +2,6 @@
   "name": "ashwood-store",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sebiskver.github.io/ashwood-store/",
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^3.0.4",
@@ -11,8 +10,6 @@
     "express": "^4.16.4",
     "express-async-errors": "^3.1.1",
     "font-awesome": "^4.7.0",
-    "form-data": "^2.3.3",
-    "gh-pages": "^2.0.1",
     "joi": "^14.3.1",
     "joi-browser": "^13.4.0",
     "joi-objectid": "^2.0.0",
@@ -28,15 +25,18 @@
     "react-router-dom": "^4.4.0",
     "react-scripts": "2.1.8",
     "react-slick": "^0.23.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.4"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "babel-node server.js",
     "build": "react-scripts build",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "react-scripts start",
-    "server": "nodemon --exec babel-node server.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "server": "nodemon --exec babel-node server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,10 +48,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.3.4",
     "concurrently": "^4.1.0"
   }
 }

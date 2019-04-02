@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import path from "path";
 import Joi from "joi";
 Joi.objectId = require("joi-objectid")(Joi);
 import cors from "cors";
@@ -27,6 +28,7 @@ mongoose
   .catch(() => console.log("Failed to Connect MongoDB"));
 
 app.use("/uploads", express.static("uploads"));
+app.use(express.static(path.join(__dirname, "build")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
@@ -37,6 +39,10 @@ app.use("/api/category", category);
 app.use("/api/products", products);
 app.use("/api/orders", orders);
 app.use("/api/comments", comments);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./build", "index.html"));
+});
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening http://localhost:${port}`));
