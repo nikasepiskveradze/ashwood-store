@@ -2,6 +2,8 @@
 
 This is the online store for Ashwood University, here you can buy, cloth, shoes, accessores and other university staffs, simple user interface will help you to interact easly, cart and checkout system with super easy UI, everything for students and not only.
 
+From here you can go to the website, [Ashwood University's Online Shop](https://vast-atoll-44210.herokuapp.com/).
+
 ## Clone Project
 
 `git clone https://github.com/sebiskver/ashwood-store.git`
