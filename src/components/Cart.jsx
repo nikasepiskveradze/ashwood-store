@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Counter from "./common/Counter";
 import EmptyCart from "./common/EmptyCart";
 import { Link } from "react-router-dom";
+import { url } from "../config.json";
 
 class Cart extends Component {
   render() {
@@ -33,9 +34,7 @@ class Cart extends Component {
                   <tr key={item._id}>
                     <td>
                       <img
-                        src={`https://cherry-pie-80014.herokuapp.com/${
-                          item.image
-                        }`}
+                        src={`${url}/${item.image}`}
                         alt=""
                         style={{ width: 200 }}
                       />

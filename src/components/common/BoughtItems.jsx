@@ -1,4 +1,5 @@
 import React from "react";
+import { url } from "../../config.json";
 
 const BoughtItems = ({ orders }) => {
   return (
@@ -19,7 +20,7 @@ const BoughtItems = ({ orders }) => {
             <tr key={Math.random()}>
               <td>
                 <img
-                  src={`http://localhost:5000/${order.image}`}
+                  src={`${url}/${order.image}`}
                   alt=""
                   style={{ width: 200 }}
                 />

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as productService from "../services/productSevice";
 import * as commentService from "../services/commentService";
+import { url } from "../config.json";
 
 class ProductDetails extends Component {
   state = {
@@ -49,11 +50,7 @@ class ProductDetails extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-6">
-              <img
-                src={`https://cherry-pie-80014.herokuapp.com/${image}`}
-                alt=""
-                className="img-fluid"
-              />
+              <img src={`${url}/${image}`} alt="" className="img-fluid" />
             </div>
             <div className="col-md-6">
               <h2

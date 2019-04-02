@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { url } from "../config.json";
 
 class Card extends Component {
   render() {
@@ -7,11 +8,7 @@ class Card extends Component {
     return (
       // <div className="col-sm-6 col-lg-4 mb-3">
       <div className="card">
-        <img
-          className="card-img-top"
-          src={`https://cherry-pie-80014.herokuapp.com/${image}`}
-          alt=""
-        />
+        <img className="card-img-top" src={`${url}/${image}`} alt="" />
 
         <div className="card-body text-center">
           <h5 className="card-title">

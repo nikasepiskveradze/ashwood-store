@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { url } from "../../config.json";
 
 const FeaturedCard = ({ itemInfo }) => {
   const { _id, title, image, short, price } = itemInfo;
@@ -7,7 +8,7 @@ const FeaturedCard = ({ itemInfo }) => {
     <div className="card mx-1 my-3" style={{ width: 350, height: 450 }}>
       <img
         className="card-img-top"
-        src={`https://cherry-pie-80014.herokuapp.com/${image}`}
+        src={`${url}/${image}`}
         alt=""
         height="300"
       />

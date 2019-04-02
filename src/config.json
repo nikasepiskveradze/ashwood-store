@@ -1,3 +1,4 @@
 {
-  "apiUrl": "/api"
+  "apiUrl": "https://vast-atoll-44210.herokuapp.com/api",
+  "url": "https://vast-atoll-44210.herokuapp.com"
 }
