@@ -82,7 +82,7 @@ class Profile extends Component {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#bought" data-toggle="tab">
-                Bought Items
+                Orders
               </a>
             </li>
           </ul>
@@ -110,7 +110,7 @@ class Profile extends Component {
 
             <div id="bought" className="tab-pane fade">
               {orders.length === 0 ? (
-                <h2 className="mt-2">No Items Bought</h2>
+                <h2 className="mt-2">No Orders</h2>
               ) : (
                 <BoughtItems orders={orders} />
               )}
