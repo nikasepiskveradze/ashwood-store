@@ -9,7 +9,7 @@ const SearchBox = ({ value, onChange, onFilter }) => {
           type="button"
           data-toggle="dropdown"
         >
-          Filter By
+          Sort By
         </button>
 
         <div className="dropdown-menu">

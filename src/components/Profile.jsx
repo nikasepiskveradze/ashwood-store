@@ -74,18 +74,6 @@ class Profile extends Component {
             Edit User Info
           </button>
 
-          <button
-            className={
-              !this.state.edit
-                ? "btn btn-primary mb-2 ml-2 disabled"
-                : "btn btn-primary mb-2 ml-2"
-            }
-            // className="btn btn-primary mb-2 ml-2 disabled"
-            onClick={this.submitEditChange}
-          >
-            Update User Info
-          </button>
-
           <ul className="nav nav-tabs">
             <li className="nav-item">
               <a className="nav-link active" href="#about" data-toggle="tab">
@@ -107,6 +95,17 @@ class Profile extends Component {
                 handleChange={this.handleEditChange}
                 errors={this.state.errors}
               />
+
+              <button
+                className={
+                  !this.state.edit
+                    ? "btn btn-primary mt-4 disabled"
+                    : "btn btn-primary mt-4"
+                }
+                onClick={this.submitEditChange}
+              >
+                Update User Info
+              </button>
             </div>
 
             <div id="bought" className="tab-pane fade">

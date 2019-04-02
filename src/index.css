@@ -238,3 +238,9 @@ code {
 .single li:last-child a {
   border-bottom: 0;
 }
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
