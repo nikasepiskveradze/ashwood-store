@@ -21,7 +21,7 @@ npm install
 By this command you can run both, client and server to this project concurrently.
 
 ```bash
-npm start
+npm run dev
 ```
 
 If you want to run only client to the browser, you can use this command.

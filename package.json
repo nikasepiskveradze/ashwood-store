@@ -36,7 +36,7 @@
     "build": "react-scripts build",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "react-scripts start",
-    "server": "nodemon --exec babel-node server.js"
+    "server": "babel-node server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
